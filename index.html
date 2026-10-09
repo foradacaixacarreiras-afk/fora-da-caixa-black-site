@@ -71,11 +71,7 @@ a{color:var(--caramelo)}
 .hero p.apoio{margin:28px 0 0;max-width:46ch;font-size:clamp(18px,2.2vw,22px);font-weight:500;line-height:1.4;color:var(--creme)}
 .hero p.apoio + p.lead{margin-top:12px}
 .hero p.lead{max-width:56ch;font-size:clamp(17px,2vw,19px);color:var(--creme-mute);margin:28px 0 34px}
-.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:980px}
-.path-prof{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line);padding-right:22px}
-.path-prof:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
-.path-prof .path-t{color:var(--creme-mute)}
-.path-cta{margin-top:6px;font-size:14px;font-weight:700;color:var(--caramelo)}
+.paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin-top:32px}
 .path{position:relative;display:grid;gap:4px;text-decoration:none;border-radius:20px;padding:20px 52px 20px 22px;transition:transform .15s ease, box-shadow .15s ease}
 .path:hover{transform:translateY(-2px)}
 .path-k{font-size:19px;font-weight:800;letter-spacing:-.01em}
@@ -86,9 +82,6 @@ a{color:var(--caramelo)}
 .path-emp{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line)}
 .path-emp:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
 .path-emp .path-t{color:var(--creme-mute)}
-.path-link{display:inline-block;margin-top:16px;font-size:15px;font-weight:500;color:var(--creme-mute);text-decoration:none;border-bottom:1px solid var(--vinho-line);padding-bottom:2px}
-.path-link:hover{color:var(--creme);border-color:var(--caramelo)}
-.choice{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
 .btn{
   appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:15px;
   padding:15px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
@@ -147,9 +140,9 @@ section.block{padding-block:72px}
 /* formulário */
 .form-shell{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px;align-items:start}
 .card{color-scheme:light;scroll-margin-top:16px;background:var(--creme);color:var(--bordo-deep);border-radius:24px;padding:34px;min-width:0}
-.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
+.choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:26px}
 .choice button{
-  appearance:none;font:inherit;cursor:pointer;text-align:left;border-radius:16px;padding:16px;
+  appearance:none;font:inherit;cursor:pointer;text-align:center;min-width:0;border-radius:16px;padding:16px;
   background:transparent;border:1.5px solid #D9C4B6;color:var(--bordo)
 }
 .choice button b{display:block;font-size:16px;font-weight:800}
@@ -243,30 +236,6 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .aside-list b{display:block}
 .aside-list span{color:var(--creme-mute);font-size:15px}
 
-#profissionais{padding-top:24px;scroll-margin-top:12px}
-#profissionais .eyebrow{margin-bottom:10px}
-.filtros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px;max-width:980px}
-.fl{display:grid;gap:6px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--caramelo)}
-.fl select,.fl input{font:inherit;font-size:15px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--creme);background:var(--bordo);border:1.5px solid var(--vinho-line);border-radius:12px;padding:11px 12px;width:100%;min-width:0;color-scheme:dark}
-.fl select:focus,.fl input:focus{outline:none;border-color:var(--caramelo)}
-.prof-status{color:var(--creme-mute);margin:24px 0 0}
-.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin-top:20px}
-.prof{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:20px;padding:22px;display:grid;gap:10px;align-content:start;min-width:0}
-.prof h3{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:26px;line-height:1.1;margin:0}
-.prof .neg{color:var(--creme-mute);font-size:14px;margin:-4px 0 0}
-.prof .tags{display:flex;flex-wrap:wrap;gap:6px}
-.prof .loc{font-size:14px;color:var(--creme-mute);margin:0}
-.prof .desc{margin:0;font-size:15px;line-height:1.55;overflow-wrap:anywhere}
-.prof .contatos{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.prof .contatos a{font-size:14px;font-weight:700;color:var(--creme);text-decoration:none;border:1.5px solid var(--vinho-line);border-radius:999px;padding:8px 14px}
-.prof .contatos a:hover{border-color:var(--caramelo)}
-.prof-vazio{margin-top:24px;border:1px dashed var(--vinho-line);border-radius:20px;padding:28px;display:grid;gap:10px;justify-items:start;max-width:720px}
-.prof-vazio h3{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:26px;line-height:1.15;margin:0}
-.prof-vazio p{margin:0 0 6px;color:var(--creme-mute)}
-.prof-cta{margin-top:22px;color:var(--creme-mute)}
-.prof-cta a{color:var(--caramelo);font-weight:700}
-@media (max-width:820px){.filtros{grid-template-columns:1fr 1fr}.fl-busca{grid-column:1 / -1}}
-@media (max-width:480px){.filtros{grid-template-columns:1fr}.prof-vazio{padding:22px}}
 footer{border-top:1px solid var(--vinho-line);padding-block:32px;color:var(--creme-mute);font-size:13px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
@@ -304,7 +273,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 .how-strip span{color:var(--creme-mute)}
 
 @media (max-width:820px){
-  .paths{grid-template-columns:1fr;max-width:560px}
+  .paths{grid-template-columns:1fr;max-width:none}
   .how{grid-template-columns:1fr}
   .vaga{grid-template-columns:1fr;padding:26px}
   .vagas-mais{grid-template-columns:1fr}
@@ -313,8 +282,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 @media (max-width:480px){
   .row2{grid-template-columns:1fr}
   .card{padding:22px}
-  .choice button{padding:14px 12px}
-  .choice button span{font-size:12px}
+  .choice{gap:6px}
+  .choice button{padding:12px 4px;border-radius:12px}
+  .choice button b{font-size:13.5px;letter-spacing:-.01em}
+  .choice button span{display:none}
   .brand-word,.top-cta{white-space:nowrap}
   .top-cta .long{display:none}
   .top-cta .short{display:inline}
@@ -362,7 +333,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <p class="eyebrow">Banco de Talentos Negros</p>
     <h1>Ei, você, pessoa negra! <em>Seu talento merece ser encontrado.</em></h1>
     <p class="apoio">Conectamos profissionais pretos e pardos a empresas que buscam talentos e querem construir equipes mais diversas.</p>
-    <p class="lead">Cadastre seu perfil e faça parte dessa rede de profissionais de diferentes áreas, experiências e trajetórias.</p>
     <div class="paths" role="group" aria-label="Escolha seu caminho">
       <a class="path path-cand" href="#vaga" id="go-cand">
         <span class="path-k">Sou candidato</span>
@@ -374,13 +344,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <span class="path-t">Quero contratar talentos negros</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a class="path path-prof" href="#profissionais" id="go-prof">
+      <a class="path path-emp" href="#form-card" id="go-prof">
         <span class="path-k">Procuro um profissional</span>
         <span class="path-t">Encontre profissionais negros</span>
-        <span class="path-cta">Encontrar profissionais <span aria-hidden="true">→</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="path path-emp" href="#form-card" id="go-prest" data-modo="prest">
+        <span class="path-k">Sou profissional</span>
+        <span class="path-t">Quero divulgar meus serviços</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-    <a class="path-link" href="#form-card" id="go-prest" data-modo="prest">Sou profissional e quero divulgar meus serviços <span aria-hidden="true">→</span></a>
   </div>
 
 
@@ -395,16 +369,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </div>
         <ul id="banco-lista"></ul>
       </div>
-    </div>
-  </section>
-
-  <section class="how-strip" aria-label="Como funciona">
-    <div class="wrap">
-      <ol>
-        <li><b>Cadastre-se</b><span>em 3 minutos, com LinkedIn e currículo</span></li>
-        <li><b>Seu perfil é lido</b><span>por uma consultora de RH</span></li>
-        <li><b>A vaga chega</b><span>pelo WhatsApp ou e-mail</span></li>
-      </ol>
     </div>
   </section>
 
@@ -503,16 +467,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
           <!-- EMPRESA -->
           <div id="flow-emp" hidden>
-            <p class="step-label">Para empresas</p>
-            <h3 class="step-title">Vamos encontrar seu próximo talento</h3>
+            <p class="step-label" id="e-rotulo">Para empresas</p>
+            <h3 class="step-title" id="e-titulo">Vamos encontrar seu próximo talento</h3>
+            <p class="hint" id="e-intro" style="margin:-10px 0 16px" hidden>Conte o que você precisa e indicamos profissionais negros da nossa rede.</p>
             <div class="fields">
-              <label class="f">Nome da empresa<input type="text" id="e-empresa" autocomplete="organization" required><span class="err"></span></label>
-              <label class="f">Pessoa de contato<input type="text" id="e-contato" autocomplete="name" required><span class="err"></span></label>
+              <label class="f"><span id="e-empresa-l">Nome da empresa</span><input type="text" id="e-empresa" autocomplete="organization" required><span class="err"></span></label>
+              <label class="f"><span id="e-contato-l">Pessoa de contato</span><input type="text" id="e-contato" autocomplete="name" required><span class="err"></span></label>
               <div class="row2">
                 <label class="f">E-mail<input type="email" id="e-email" autocomplete="email" required><span class="err"></span></label>
                 <label class="f">WhatsApp<input type="tel" id="e-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
               </div>
-              <label class="f">Cargo que busca<input type="text" id="e-cargo" placeholder="Ex.: Analista Financeiro Pleno" required><span class="err"></span></label>
+              <label class="f"><span id="e-cargo-l">Cargo que busca</span><input type="text" id="e-cargo" placeholder="Ex.: Analista Financeiro Pleno" required><span class="err"></span></label>
             </div>
           </div>
 
@@ -581,36 +546,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
   </section>
 
-  <section class="block" id="profissionais">
-    <div class="wrap">
-      <p class="eyebrow">Rede de profissionais</p>
-      <h2 class="section-title">Encontre profissionais negros</h2>
-      <p class="section-sub">Advocacia, consultoria jurídica e outros serviços oferecidos por profissionais pretos e pardos. Cada perfil é publicado com autorização do profissional, depois de uma revisão do Fora da Caixa.</p>
-
-      <div class="filtros" id="filtros" hidden>
-        <label class="fl">Área
-          <select id="f-area"><option value="">Todas as áreas</option></select>
-        </label>
-        <label class="fl">Localização
-          <select id="f-local"><option value="">Todas as localizações</option></select>
-        </label>
-        <label class="fl fl-busca">Buscar
-          <input type="search" id="f-busca" placeholder="Nome, especialidade ou serviço">
-        </label>
-      </div>
-
-      <p class="prof-status" id="prof-status" role="status">Carregando profissionais…</p>
-      <div class="prof-grid" id="prof-lista"></div>
-
-      <div class="prof-vazio" id="prof-vazio" hidden>
-        <h3>Ainda não há profissionais divulgados por aqui.</h3>
-        <p>Estamos formando essa rede agora. Se você é profissional negro e oferece serviços jurídicos, cadastre seus serviços para aparecer nesta página.</p>
-        <a class="btn btn-primary" href="#form-card" data-modo="prest">Divulgar meus serviços</a>
-      </div>
-
-      <p class="prof-cta" id="prof-cta" hidden>É profissional e quer aparecer aqui? <a href="#form-card" data-modo="prest">Cadastre seus serviços</a></p>
-    </div>
-  </section>
 </main>
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden></div>
@@ -623,24 +558,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </footer>
 
 <script>
-/* ===== VAGAS: a primeira da lista é sempre a "Vaga em destaque". Para atualizar, edite só esta lista. ===== */
+/* ===== VAGAS: a primeira da lista é a vaga em destaque (a publicada por último). Vaga nova entra no topo. ===== */
 const VAGAS = [
-  {
-    destaque: true,
-    titulo: "Estágio em Comunicação",
-    tipo: "Estágio",
-    paraQuem: "A partir do 2º ano de Relações Públicas ou Jornalismo",
-    modelo: "Híbrido",
-    horario: "Seg. a sex., das 10h às 16h ou das 13h às 19h",
-    atividades: [
-      "Disponibilidade para contrato de estágio de, no mínimo, um ano",
-      "Boa comunicação e excelente escrita",
-      "Curiosidade para aprender sobre PR",
-      "Organização e atenção aos detalhes",
-      "Postura proativa e espírito colaborativo",
-      "Diferencial: facilidade para propor ideias criativas e engajar pessoas por meio da comunicação"
-    ]
-  },
   {
     destaque: true,
     titulo: "Assistente Jurídico(a)",
@@ -680,13 +599,30 @@ const VAGAS = [
         ]}
       ]
     }
+  },
+  {
+    destaque: true,
+    titulo: "Estágio em Comunicação",
+    tipo: "Estágio",
+    paraQuem: "A partir do 2º ano de Relações Públicas ou Jornalismo",
+    modelo: "Híbrido",
+    horario: "Seg. a sex., das 10h às 16h ou das 13h às 19h",
+    atividades: [
+      "Disponibilidade para contrato de estágio de, no mínimo, um ano",
+      "Boa comunicação e excelente escrita",
+      "Curiosidade para aprender sobre PR",
+      "Organização e atenção aos detalhes",
+      "Postura proativa e espírito colaborativo",
+      "Diferencial: facilidade para propor ideias criativas e engajar pessoas por meio da comunicação"
+    ]
   }
 ];
 (function(){
   const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
   const destaques = VAGAS.filter(x=>x.destaque), outras = VAGAS.filter(x=>!x.destaque);
   const titulo = document.getElementById("vaga-titulo");
-  if(titulo) titulo.textContent = destaques.length > 1 ? "Vagas em destaque" : "Vaga em destaque";
+  if(titulo) titulo.textContent = destaques.length > 1 ? "Vagas abertas" : "Vaga em destaque";
+  const rotulo = v => v === destaques[0] ? "Em destaque" : "Vaga aberta";
   const box = document.getElementById("vaga-destaque");
   const sheet = document.getElementById("sheet");
   let ultimoBotao = null;
@@ -713,7 +649,7 @@ const VAGAS = [
     back.addEventListener("click", fechar);
     top.append(back, el("span","tag-black","Black"));
     inn.append(top);
-    const pills = el("div","pills"); pills.append(el("span","pill","Em destaque")); if(v.tipo) pills.append(el("span","pill out",v.tipo)); inn.append(pills);
+    const pills = el("div","pills"); pills.append(el("span", v === destaques[0] ? "pill" : "pill out", rotulo(v))); if(v.tipo) pills.append(el("span","pill out",v.tipo)); inn.append(pills);
     const h = el("h2",null,v.titulo); h.id = "sheet-title"; inn.append(h);
     if(d.intro) inn.append(el("p","intro",d.intro));
     if(d.fatos){ const f = el("div","sheet-facts"); d.fatos.forEach(([k,val])=>{ const x=el("div"); x.append(el("span",null,k), el("b",null,val)); f.append(x); }); inn.append(f); }
@@ -736,7 +672,7 @@ const VAGAS = [
 
   destaques.forEach(v=>{
     const card = el("div","vd");
-    const top = el("div","vd-top"); top.append(el("span","pill","Em destaque")); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
+    const top = el("div","vd-top"); top.append(el("span", v === destaques[0] ? "pill" : "pill out", rotulo(v))); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
     card.append(el("h3",null,v.titulo));
     if(v.onde) card.append(el("p","where",v.onde));
     const facts = el("div","vd-facts");
@@ -846,7 +782,21 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,()=>drop.classList.remove("over")));
 
   $("#opt-cand").addEventListener("click", ()=>setMode("cand"));
-  $("#opt-emp").addEventListener("click", ()=>setMode("emp"));
+  let busca = false;
+  function modoBusca(on){
+    busca = on;
+    $("#e-rotulo").textContent = on ? "Procuro um profissional" : "Para empresas";
+    $("#e-titulo").textContent = on ? "Que profissional você procura?" : "Vamos encontrar seu próximo talento";
+    $("#e-intro").hidden = !on;
+    $("#e-empresa-l").innerHTML = on ? 'Empresa <span class="opt">(opcional)</span>' : "Nome da empresa";
+    $("#e-empresa").required = !on;
+    $("#e-contato-l").textContent = on ? "Seu nome" : "Pessoa de contato";
+    $("#e-cargo-l").textContent = on ? "Profissional ou serviço que você procura" : "Cargo que busca";
+    $("#e-cargo").placeholder = on ? "Ex.: advocacia trabalhista, consultoria em contratos" : "Ex.: Analista Financeiro Pleno";
+    clear($("#flow-emp"));
+  }
+  $("#opt-emp").addEventListener("click", ()=>{ setMode("emp"); modoBusca(false); });
+  document.getElementById("go-prof").addEventListener("click", ()=>{ setMode("emp"); modoBusca(true); });
   $("#opt-prest").addEventListener("click", ()=>setMode("prest"));
   $("#back").addEventListener("click", ()=>{ if(step>1){ step--; render(); } });
 
@@ -884,8 +834,8 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     if(mode==="emp"){
       if(!checkFields($("#flow-emp"))) return;
       enviar("Empresa", {
-        "Empresa": val("e-empresa"), "Contato": val("e-contato"), "E-mail": val("e-email"),
-        "WhatsApp": val("e-whats"), "Cargo que busca": val("e-cargo")
+        "Empresa": val("e-empresa") || (busca ? "Pessoa física" : ""), "Contato": val("e-contato"), "E-mail": val("e-email"),
+        "WhatsApp": val("e-whats"), "Cargo que busca": busca ? "Procura profissional: " + val("e-cargo") : val("e-cargo")
       }, null, "Contato recebido!", "Obrigada pelo interesse em contratar com intenção. Vamos falar com você em breve para entender a vaga.");
       return;
     }
@@ -940,76 +890,5 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
 })();
 </script>
 
-<script>
-/* ===== PROFISSIONAIS: lista vem da aba "Prestadores" da planilha.
-   Só aparecem perfis com "Autoriza divulgação" = Sim e "Publicado" = Sim (a revisão é feita na planilha). ===== */
-(function(){
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbxOP89i_4C3uYkY1qekf2P_6PPZVrpMd1ZZrGE980ZaYrsDKFtT7zpgkrB6pxHdhy2-/exec";
-  const $ = id => document.getElementById(id);
-  const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
-  let todos = [];
-
-  function linkSite(v){
-    v = (v||"").trim(); if(!v) return "";
-    if(/^https?:\/\//i.test(v)) return v;
-    if(/^@[\w.]+$/.test(v)) return "https://instagram.com/" + v.slice(1);
-    if(/^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(v)) return "https://" + v;
-    return "";
-  }
-  function linkZap(v){
-    let d = (v||"").replace(/\D/g,""); if(d.length < 10) return "";
-    if(!d.startsWith("55")) d = "55" + d;
-    return "https://wa.me/" + d;
-  }
-  function card(p){
-    const c = el("article","prof");
-    c.append(el("h3",null,p.nome));
-    if(p.negocio) c.append(el("p","neg",p.negocio));
-    const tags = el("div","tags");
-    if(p.area) tags.append(el("span","pill",p.area));
-    (p.especialidades||"").split(/[,;]/).map(x=>x.trim()).filter(Boolean).slice(0,4).forEach(x=>tags.append(el("span","pill out",x)));
-    if(tags.children.length) c.append(tags);
-    const loc = [p.cidade, p.atendimento].filter(Boolean).join(" · ");
-    if(loc) c.append(el("p","loc",loc));
-    if(p.servicos) c.append(el("p","desc",p.servicos));
-    const ct = el("div","contatos");
-    if(p.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)){ const a = el("a",null,"E-mail"); a.href = "mailto:" + p.email; ct.append(a); }
-    const z = linkZap(p.whatsapp); if(z){ const a = el("a",null,"WhatsApp"); a.href = z; a.target = "_blank"; a.rel = "noopener"; ct.append(a); }
-    const s = linkSite(p.portfolio); if(s){ const a = el("a",null,"Site ou Instagram"); a.href = s; a.target = "_blank"; a.rel = "noopener"; ct.append(a); }
-    if(ct.children.length) c.append(ct);
-    return c;
-  }
-  function opcoes(sel, valores){
-    [...new Set(valores.filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>sel.append(el("option",null,v)));
-  }
-  function norm(t){ return (t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
-  function render(){
-    const area = $("f-area").value, local = $("f-local").value, busca = norm($("f-busca").value.trim());
-    const lista = todos.filter(p => (!area || p.area === area) && (!local || p.cidade === local) &&
-      (!busca || norm([p.nome,p.negocio,p.especialidades,p.servicos,p.area].join(" ")).includes(busca)));
-    $("prof-lista").textContent = "";
-    lista.forEach(p => $("prof-lista").append(card(p)));
-    $("prof-status").hidden = lista.length > 0;
-    $("prof-status").textContent = lista.length ? "" : "Nenhum profissional encontrado com esses filtros.";
-  }
-  function vazio(){
-    $("prof-status").hidden = true; $("prof-vazio").hidden = false; $("filtros").hidden = true; $("prof-cta").hidden = true;
-  }
-  fetch(ENDPOINT + "?acao=prestadores")
-    .then(r => r.json())
-    .then(res => {
-      if(!res || !res.ok) throw new Error("resposta inválida");
-      todos = (res.profissionais || []).filter(p => p && p.nome);
-      if(!todos.length){ vazio(); return; }
-      opcoes($("f-area"), todos.map(p=>p.area));
-      opcoes($("f-local"), todos.map(p=>p.cidade));
-      $("filtros").hidden = false; $("prof-cta").hidden = false;
-      ["f-area","f-local"].forEach(id=>$(id).addEventListener("change", render));
-      $("f-busca").addEventListener("input", render);
-      render();
-    })
-    .catch(() => { $("prof-status").textContent = "Não foi possível carregar a lista agora. Tente novamente em alguns instantes."; });
-})();
-</script>
 </body>
 </html>
