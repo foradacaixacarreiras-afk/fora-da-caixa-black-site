@@ -189,6 +189,18 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--bordo)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid rgba(217,168,119,.6);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500}
 .sheet-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+/* Página só da vaga (/vagas/...) */
+.vp{max-width:760px;margin:0 auto;padding:12px 20px 8px}
+.vp .pills{display:flex;flex-wrap:wrap;gap:8px}
+.vp h1{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:clamp(38px,8vw,60px);line-height:1.02;margin:14px 0 8px;text-wrap:balance}
+.vp .where{color:var(--creme-mute);font-size:15px;margin:0 0 14px}
+.vp .intro{color:var(--creme-mute);font-size:17px;max-width:60ch;margin:0}
+.vp-lista{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.vp .sheet-cta{margin-top:32px}
+.vp-todas{display:inline-block;margin-top:28px;color:var(--creme-mute);font-size:15px;text-decoration:none;border-bottom:1px solid var(--vinho-line);padding-bottom:2px}
+.vp-todas:hover{color:var(--creme);border-color:var(--caramelo)}
+.modo-vaga .hero,.modo-vaga #vaga,.modo-vaga .choice{display:none !important}
+@media (max-width:480px){.vp .intro{font-size:16px}}
 @media (max-width:480px){.sheet-facts{grid-template-columns:1fr}.sheet .intro{font-size:16px}}
 label.f .opt{font-weight:500;color:#8C6A5D}
 input[type=text],input[type=email],input[type=tel],input[type=url],input[type=search],select,textarea{
@@ -562,7 +574,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 const VAGAS = [
   {
     destaque: true,
+    slug: "assistente-juridico",   // link direto: black.foradacaixacarreiras.com.br/vagas/assistente-juridico
     titulo: "Assistente Jurídico(a)",
+    chamada: "Escritório de Direito Digital e Contratos no Tatuapé (SP). Para pessoa no último ano de Direito ou recém-formada. Modelo híbrido.",
     tipo: "Direito",
     onde: "Escritório de Direito Digital e Contratos · Tatuapé, SP",
     paraQuem: "Pessoa no último ano de Direito ou recém-formada",
@@ -602,7 +616,9 @@ const VAGAS = [
   },
   {
     destaque: true,
+    slug: "estagio-comunicacao",   // link direto: black.foradacaixacarreiras.com.br/vagas/estagio-comunicacao
     titulo: "Estágio em Comunicação",
+    chamada: "Estágio para estudantes a partir do 2º ano de Relações Públicas ou Jornalismo. Modelo híbrido.",
     tipo: "Estágio",
     paraQuem: "A partir do 2º ano de Relações Públicas ou Jornalismo",
     modelo: "Híbrido",
@@ -670,6 +686,37 @@ const VAGAS = [
   }
   document.addEventListener("keydown", e=>{ if(e.key === "Escape" && !sheet.hidden) fechar(); });
 
+  // ===== Link direto de uma vaga: /vagas/<slug> =====
+  const slugAtual = document.documentElement.dataset.vagaPagina || ((location.pathname.match(/^\/vagas\/([^\/]+)/) || [])[1] || "");
+  const vagaAtual = slugAtual && VAGAS.find(x => x.slug === decodeURIComponent(slugAtual));
+  if(vagaAtual){
+    const v = vagaAtual, d = v.detalhes || {};
+    document.body.classList.add("modo-vaga");
+    const vp = el("section","vp"); vp.setAttribute("aria-labelledby","vp-title");
+    const pills = el("div","pills"); pills.append(el("span","pill","Vaga aberta")); if(v.tipo) pills.append(el("span","pill out",v.tipo)); vp.append(pills);
+    const h = el("h1",null,v.titulo); h.id = "vp-title"; vp.append(h);
+    if(v.onde && !d.intro) vp.append(el("p","where",v.onde));
+    if(d.intro) vp.append(el("p","intro",d.intro));
+    const fatos = d.fatos || [["Para quem",v.paraQuem],["Modelo",v.modelo],["Horário",v.horario]].filter(x=>x[1]);
+    if(fatos.length){ const f = el("div","sheet-facts"); fatos.forEach(([k,val])=>{ const x=el("div"); x.append(el("span",null,k), el("b",null,val)); f.append(x); }); vp.append(f); }
+    const secoes = d.secoes || (v.atividades ? [{ titulo: "O que buscamos", itens: v.atividades }] : []);
+    secoes.forEach(s=>{
+      const sec = el("section","sheet-sec"); sec.append(el("h3",null,s.titulo));
+      if(s.chips){ const c = el("div","chips"); s.chips.forEach(t=>c.append(el("span","chip",t))); sec.append(c); }
+      if(s.itens){ const ul = el("ul"); s.itens.forEach(it=>ul.append(el("li",null,Array.isArray(it) ? it[0] : it))); sec.append(ul); }
+      vp.append(sec);
+    });
+    const cta = el("div","sheet-cta"); const b = el("a","btn btn-primary","Quero me candidatar"); b.href = "#form-card"; cta.append(b); vp.append(cta);
+    document.getElementById("inicio").prepend(vp);
+    // formulário só de candidatura, com a vaga já escolhida
+    const sec = document.getElementById("cadastro");
+    sec.querySelector(".section-title").textContent = "Candidate\u2011se a esta vaga";
+    const todas = el("a","vp-todas","Ver todas as vagas do Fora da Caixa Black"); todas.href = "/";
+    sec.querySelector(".section-sub").after(todas);
+    document.querySelector(".brand").href = "/";
+    const topo = document.querySelector(".top-cta"); if(topo){ topo.querySelector(".long").textContent = "Quero me candidatar"; topo.querySelector(".short").textContent = "Candidatar"; }
+  }
+
   destaques.forEach(v=>{
     const card = el("div","vd");
     const top = el("div","vd-top"); top.append(el("span", v === destaques[0] ? "pill" : "pill out", rotulo(v))); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
@@ -696,6 +743,7 @@ const VAGAS = [
   const sel = document.getElementById("c-vaga");
   destaques.concat(outras).forEach(x=>{ sel.append(el("option",null,x.titulo)); });
   sel.append(el("option",null,"Banco de talentos (sem vaga específica)"));
+  if(vagaAtual){ sel.value = vagaAtual.titulo; sel.closest("label").hidden = true; }
 })();
 </script>
 <script>
