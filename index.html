@@ -418,6 +418,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
                   <label class="f">WhatsApp<input type="tel" id="c-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
                 </div>
                 <label class="f">Cidade e estado<input type="text" id="c-cidade" placeholder="São Paulo, SP" required><span class="err"></span></label>
+                <label class="f">Como você se autodeclara?
+                  <select id="c-raca" required>
+                    <option value="">Selecione</option>
+                    <option>Preta</option>
+                    <option>Parda</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="check"><input type="checkbox" id="c-afirmativa"> Declaro que sou uma pessoa preta ou parda e tenho ciência de que as vagas do Fora da Caixa Black são afirmativas, destinadas exclusivamente a pessoas pretas e pardas.</label>
+                <span class="err" id="afirmativa-err"></span>
               </div>
             </div>
 
@@ -479,7 +488,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
                   </label>
                   <span class="err" id="cv-err"></span>
                 </div>
-                <label class="check"><input type="checkbox" id="c-lgpd" required> Autorizo o Fora da Caixa a guardar meus dados e compartilhar meu perfil com empresas parceiras para processos seletivos.</label>
+                <label class="check"><input type="checkbox" id="c-lgpd" required> Autorizo o Fora da Caixa a guardar meus dados, inclusive a autodeclaração racial, e a compartilhar meu perfil com empresas parceiras para processos seletivos.</label>
                 <span class="err" id="lgpd-err"></span>
               </div>
             </div>
@@ -916,6 +925,10 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     }
     const cur = steps[step-1];
     if(!checkFields(cur)) return;
+    if(step===1){
+      if(!$("#c-afirmativa").checked){ $("#afirmativa-err").textContent="Para seguir, confirme a autodeclaração."; return; }
+      $("#afirmativa-err").textContent="";
+    }
     if(step===3){
       let ok = true;
       if(!cv.files[0]){ $("#cv-err").textContent="Anexe seu currículo para concluir."; drop.classList.add("invalid"); ok=false; }
@@ -923,6 +936,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
       if(!ok) return;
       enviar("Candidato", {
         "Nome": val("c-nome"), "E-mail": val("c-email"), "WhatsApp": val("c-whats"), "Cidade": val("c-cidade"),
+        "Autodeclaração": val("c-raca"), "Ciência vaga afirmativa": "Sim",
         "Área de atuação": val("c-area"), "Formação": val("c-formacao"), "Nível": val("c-nivel"),
         "Pretensão salarial": val("c-pretensao"), "LinkedIn": val("c-linkedin"),
         "Vaga de interesse": val("c-vaga") || "Banco de talentos", "Aceite LGPD": "Sim"
