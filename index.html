@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>[hidden]{display:none!important}img{max-width:100%}html{-webkit-text-size-adjust:100%}</style>
+<title>Fora da Caixa Black</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Layout: uma coluna editorial, hero com manchete grande, vaga em destaque e formulário em etapas num cartão. Visual único e escuro em bordô (escolha deliberada da marca). */
+:root{
+  --bordo-deep:#240810;
+  --bordo:#3B0D18;
+  --bordo-soft:#521626;
+  --vinho-line:#6E2436;
+  --marrom:#8A5A3C;
+  --caramelo:#D9A877;
+  --creme:#F6EADF;
+  --creme-mute:#CFB5A8;
+  --erro:#FF9C8A;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --body:"Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --accent:"Caveat", "Comic Sans MS", cursive;
+  --accent-style:normal;
+  --accent-size:1.15em;
+  --display-weight:300;
+  --display-track:-.035em;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bordo-deep);color:var(--creme);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+a{color:var(--caramelo)}
+:focus-visible{outline:2px solid var(--caramelo);outline-offset:3px;border-radius:6px}
+
+/* topo */
+.topband{background:transparent}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px 4px}
+.brand{display:flex;align-items:center;gap:4px;text-decoration:none;min-width:0}
+.brand .logo{width:clamp(112px,12vw,132px);height:auto;flex:none;display:block}
+.brand-word{font-weight:600;font-size:15px;letter-spacing:.01em}
+.tag-black{font-weight:600;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--caramelo);border:1px solid rgba(217,168,119,.5);padding:3px 7px;border-radius:3px}
+.top-cta .short{display:none}
+.top-cta{font-weight:600;font-size:14px;color:var(--creme);text-decoration:none;border-bottom:1px solid var(--caramelo);white-space:nowrap;padding-bottom:2px}
+
+/* hero */
+.hero{position:relative;padding-block:40px 48px;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:auto -10% -40% auto;width:620px;height:620px;max-width:120vw;
+  background:radial-gradient(closest-side,rgba(138,90,60,.38),transparent 70%);pointer-events:none
+}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--caramelo);margin:0 0 18px}
+.hero h1{
+  font-family:var(--display);font-weight:var(--display-weight);margin:0;
+  font-size:clamp(44px,8.4vw,104px);line-height:.98;letter-spacing:var(--display-track);text-wrap:balance;max-width:13ch
+}
+.hero h1 em{display:block;margin-top:.12em;font-family:var(--accent);font-style:var(--accent-style);font-size:.8em;line-height:1.02;font-weight:500;letter-spacing:0;color:var(--caramelo);max-width:15ch}
+.section-title,.vaga h3,.step-title,.done h3,.areas-row{font-weight:var(--display-weight) !important;letter-spacing:var(--display-track)}
+.hero p.apoio{margin:28px 0 0;max-width:46ch;font-size:clamp(18px,2.2vw,22px);font-weight:500;line-height:1.4;color:var(--creme)}
+.hero p.apoio + p.lead{margin-top:12px}
+.hero p.lead{max-width:56ch;font-size:clamp(17px,2vw,19px);color:var(--creme-mute);margin:28px 0 34px}
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:980px}
+.path-prof{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line);padding-right:22px}
+.path-prof:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
+.path-prof .path-t{color:var(--creme-mute)}
+.path-cta{margin-top:6px;font-size:14px;font-weight:700;color:var(--caramelo)}
+.path{position:relative;display:grid;gap:4px;text-decoration:none;border-radius:20px;padding:20px 52px 20px 22px;transition:transform .15s ease, box-shadow .15s ease}
+.path:hover{transform:translateY(-2px)}
+.path-k{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.path-t{font-size:14px;font-weight:500;line-height:1.35}
+.path svg{position:absolute;right:20px;top:50%;width:20px;height:20px;transform:translateY(-50%)}
+.path-cand{background:var(--creme);color:var(--bordo)}
+.path-cand .path-t{color:#7A5446}
+.path-emp{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line)}
+.path-emp:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
+.path-emp .path-t{color:var(--creme-mute)}
+.path-link{display:inline-block;margin-top:16px;font-size:15px;font-weight:500;color:var(--creme-mute);text-decoration:none;border-bottom:1px solid var(--vinho-line);padding-bottom:2px}
+.path-link:hover{color:var(--creme);border-color:var(--caramelo)}
+.choice{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+.btn{
+  appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:15px;
+  padding:15px 26px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+  transition:transform .15s ease, background .15s ease
+}
+.btn-primary{background:var(--creme);color:var(--bordo)}
+.btn-primary:hover{transform:translateY(-1px);background:#fff}
+.btn-ghost{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:40px;font-size:13px;color:var(--creme-mute)}
+.meta b{color:var(--creme);font-weight:700}
+
+/* áreas */
+.areas{border-block:1px solid var(--vinho-line);padding-block:18px;overflow:hidden}
+.areas-row{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--display);font-size:clamp(20px,2.6vw,26px);color:var(--creme-mute)}
+.areas-row span:nth-child(odd){color:var(--creme)}
+.areas-row span::after{content:"·";margin-left:28px;color:var(--marrom)}
+.areas-row span:last-child::after{content:""}
+
+/* seções */
+section.block{padding-block:72px}
+.section-title{font-family:var(--display);font-weight:400;font-size:clamp(32px,4.4vw,48px);line-height:1.05;margin:0 0 14px;text-wrap:balance}
+.section-sub{color:var(--creme-mute);max-width:58ch;margin:0}
+
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:40px}
+.how div{border-top:2px solid var(--marrom);padding-top:18px}
+.how h3{margin:6px 0 6px;font-size:18px;font-weight:800}
+.how p{margin:0;color:var(--creme-mute);font-size:15px}
+.how small{font-weight:800;letter-spacing:.14em;font-size:11px;color:var(--caramelo);text-transform:uppercase}
+
+/* vaga */
+.vaga{
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;
+  background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:40px
+}
+.vagas-mais{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.vaga-mini{border:1px solid var(--vinho-line);border-radius:18px;padding:24px;display:grid;gap:8px;align-content:start}
+.vaga-mini h4{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:26px;line-height:1.1;margin:4px 0 0}
+.vaga-mini p{margin:0;color:var(--creme-mute);font-size:15px}
+.vaga-mini .soon{font-size:12px;font-weight:700;color:var(--caramelo)}
+.vaga-mini .btn{justify-self:start;margin-top:8px;padding:11px 20px;font-size:14px}
+.pill.out{background:transparent;color:var(--caramelo);box-shadow:inset 0 0 0 1px var(--caramelo)}
+.vagas-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:24px}
+.pill{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--caramelo);color:var(--bordo-deep);padding:5px 11px;border-radius:999px}
+.vaga h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,3.6vw,40px);line-height:1.05;margin:16px 0 8px}
+.vaga .where{color:var(--creme-mute);margin:0 0 20px}
+.vaga ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.vaga li{padding-left:22px;position:relative;font-size:15px}
+.vaga li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--caramelo)}
+.facts{display:grid;gap:14px;align-content:start}
+.fact{border-bottom:1px solid var(--vinho-line);padding-bottom:12px}
+.fact span{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo)}
+.fact b{font-weight:600;font-size:15px}
+
+/* formulário */
+.form-shell{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px;align-items:start}
+.card{color-scheme:light;scroll-margin-top:16px;background:var(--creme);color:var(--bordo-deep);border-radius:24px;padding:34px;min-width:0}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
+.choice button{
+  appearance:none;font:inherit;cursor:pointer;text-align:left;border-radius:16px;padding:16px;
+  background:transparent;border:1.5px solid #D9C4B6;color:var(--bordo)
+}
+.choice button b{display:block;font-size:16px;font-weight:800}
+.choice button span{font-size:13px;color:#7A5446}
+.choice button[aria-pressed="true"]{background:var(--bordo);border-color:var(--bordo);color:var(--creme)}
+.choice button[aria-pressed="true"] span{color:var(--creme-mute)}
+
+.progress{display:flex;gap:6px;margin-bottom:8px}
+.progress i{flex:1;height:4px;border-radius:4px;background:#E6D5CA}
+.progress i.on{background:var(--marrom)}
+.step-label{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marrom);margin:0 0 4px}
+.step-title{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.1;margin:0 0 20px;color:var(--bordo)}
+
+.fields{display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label.f{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--bordo)}
+.ajuda{margin-top:-6px;font-size:13px;color:#5C3A30}
+.ajuda summary{cursor:pointer;font-weight:700;color:var(--marrom);list-style:none;display:inline-flex;align-items:center;gap:6px}
+.ajuda summary::-webkit-details-marker{display:none}
+.ajuda summary::before{content:"?";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--marrom);font-size:11px}
+.ajuda-corpo{margin-top:8px;padding:12px 14px;background:#FFFAF5;border:1px solid #E6D5CA;border-radius:12px;display:grid;gap:8px}
+.ajuda-corpo p{margin:0;line-height:1.5}
+.vd-acoes{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.saiba{appearance:none;background:none;border:0;padding:4px 0;font:inherit;font-size:15px;font-weight:600;color:var(--caramelo);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.saiba:hover{color:var(--creme)}
+.sheet{position:fixed;inset:0;z-index:50;background:var(--bordo-deep);color:var(--creme);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sheet-in{max-width:760px;margin:0 auto;padding:0 20px 56px}
+.sheet-top{position:sticky;top:0;z-index:1;background:var(--bordo-deep);border-bottom:1px solid var(--vinho-line);padding-block:12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sheet-back{appearance:none;background:none;border:0;color:var(--creme);font:inherit;font-size:15px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:6px 0}
+.sheet-back svg{width:18px;height:18px}
+.sheet-top .tag-black{flex:none}
+.sheet .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.sheet h2{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:clamp(36px,7vw,56px);line-height:1.02;margin:14px 0 10px;text-wrap:balance}
+.sheet .intro{color:var(--creme-mute);font-size:17px;max-width:60ch;margin:0}
+.sheet-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px;padding:18px;border:1px solid var(--vinho-line);border-radius:16px;background:var(--bordo)}
+.sheet-facts span{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo)}
+.sheet-facts b{font-weight:600;font-size:15px}
+.sheet-sec{border-top:1px solid var(--vinho-line);padding-top:22px;margin-top:28px}
+.sheet-sec h3{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo);margin:0 0 14px}
+.sheet-sec ul{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.sheet-sec li{padding-left:22px;position:relative;font-size:16px;line-height:1.55}
+.sheet-sec li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--caramelo)}
+.sheet-sec li small{display:block;color:var(--creme-mute);font-size:14px;margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid rgba(217,168,119,.6);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500}
+.sheet-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+@media (max-width:480px){.sheet-facts{grid-template-columns:1fr}.sheet .intro{font-size:16px}}
+label.f .opt{font-weight:500;color:#8C6A5D}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=search],select,textarea{
+  font:inherit;font-size:15px;font-weight:500;color:var(--bordo-deep);background:#FFFAF5;
+  border:1.5px solid #DCC8BB;border-radius:12px;padding:12px 14px;width:100%;min-width:0;color-scheme:light
+}
+textarea{resize:vertical;min-height:96px;line-height:1.5}
+.fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
+.fieldset legend{font-size:13px;font-weight:700;color:var(--bordo);padding:0;margin-bottom:4px}
+.checks{display:flex;flex-wrap:wrap;gap:8px 18px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);box-shadow:0 0 0 3px rgba(82,22,38,.15)}
+.invalid{border-color:#B3261E !important}
+.err{font-size:12px;font-weight:600;color:#B3261E;min-height:0}
+.hint{font-size:12px;font-weight:500;color:#8C6A5D}
+
+.drop{
+  border:1.5px dashed #C9A996;border-radius:14px;padding:18px;background:#FFFAF5;
+  display:flex;align-items:center;gap:14px;cursor:pointer;position:relative
+}
+.drop:hover,.drop.over{border-color:var(--bordo)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.drop .ico{flex:none;width:42px;height:42px;border-radius:10px;background:var(--bordo);display:grid;place-items:center}
+.drop .ico svg{width:20px;height:20px}
+.drop b{display:block;font-size:14px}
+.drop span{font-size:12px;color:#8C6A5D;word-break:break-all}
+
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13px;font-weight:500;color:#5C3A30}
+.check input{margin-top:3px;accent-color:var(--bordo);width:16px;height:16px;flex:none}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px}
+.nav .btn-primary{background:var(--bordo);color:var(--creme)}
+.nav .btn-primary:hover{background:var(--bordo-soft)}
+.back{appearance:none;background:none;border:0;font:inherit;font-weight:700;color:var(--marrom);cursor:pointer;padding:8px 0}
+.back[hidden]{display:none}
+
+.done{text-align:center;padding:24px 6px}
+.done .seal{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:var(--bordo);display:grid;place-items:center}
+.done h3{font-family:var(--display);font-weight:400;font-size:32px;color:var(--bordo);margin:0 0 10px}
+.done p{color:#5C3A30;margin:0 auto 10px;max-width:40ch}
+.done .note{font-size:12px;color:#8C6A5D;margin-top:18px}
+
+.aside-list{margin:28px 0 0;padding:0;list-style:none;display:grid;gap:18px}
+.aside-list li{display:grid;grid-template-columns:28px 1fr;gap:12px}
+.aside-list svg{width:22px;height:22px;margin-top:2px}
+.aside-list b{display:block}
+.aside-list span{color:var(--creme-mute);font-size:15px}
+
+#profissionais{padding-top:24px;scroll-margin-top:12px}
+#profissionais .eyebrow{margin-bottom:10px}
+.filtros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px;max-width:980px}
+.fl{display:grid;gap:6px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--caramelo)}
+.fl select,.fl input{font:inherit;font-size:15px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--creme);background:var(--bordo);border:1.5px solid var(--vinho-line);border-radius:12px;padding:11px 12px;width:100%;min-width:0;color-scheme:dark}
+.fl select:focus,.fl input:focus{outline:none;border-color:var(--caramelo)}
+.prof-status{color:var(--creme-mute);margin:24px 0 0}
+.prof-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin-top:20px}
+.prof{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:20px;padding:22px;display:grid;gap:10px;align-content:start;min-width:0}
+.prof h3{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:26px;line-height:1.1;margin:0}
+.prof .neg{color:var(--creme-mute);font-size:14px;margin:-4px 0 0}
+.prof .tags{display:flex;flex-wrap:wrap;gap:6px}
+.prof .loc{font-size:14px;color:var(--creme-mute);margin:0}
+.prof .desc{margin:0;font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+.prof .contatos{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.prof .contatos a{font-size:14px;font-weight:700;color:var(--creme);text-decoration:none;border:1.5px solid var(--vinho-line);border-radius:999px;padding:8px 14px}
+.prof .contatos a:hover{border-color:var(--caramelo)}
+.prof-vazio{margin-top:24px;border:1px dashed var(--vinho-line);border-radius:20px;padding:28px;display:grid;gap:10px;justify-items:start;max-width:720px}
+.prof-vazio h3{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:26px;line-height:1.15;margin:0}
+.prof-vazio p{margin:0 0 6px;color:var(--creme-mute)}
+.prof-cta{margin-top:22px;color:var(--creme-mute)}
+.prof-cta a{color:var(--caramelo);font-weight:700}
+@media (max-width:820px){.filtros{grid-template-columns:1fr 1fr}.fl-busca{grid-column:1 / -1}}
+@media (max-width:480px){.filtros{grid-template-columns:1fr}.prof-vazio{padding:22px}}
+footer{border-top:1px solid var(--vinho-line);padding-block:32px;color:var(--creme-mute);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+.vd{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:28px;display:grid;gap:18px;margin-top:20px}
+.vd-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.vd h3{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:clamp(30px,4vw,42px);line-height:1.05;margin:0}
+.vd .where{color:var(--creme-mute);margin:-8px 0 0;font-size:15px}
+.salary{display:grid;gap:2px;background:rgba(217,168,119,.12);border:1px solid rgba(217,168,119,.35);border-radius:14px;padding:14px 16px}
+.salary b + b{margin-top:2px}
+.salary span{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo)}
+.salary b{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.vd-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.vd-facts div span{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo)}
+.vd-facts div b{font-weight:600;font-size:14px}
+.vd ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.vd li{padding-left:22px;position:relative;font-size:15px}
+.vd li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--caramelo)}
+.vd .btn{justify-self:start}
+.banco{margin-top:34px}
+.banco-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:10px}
+.banco-head h3{font-family:var(--display);font-weight:400;letter-spacing:var(--display-track);font-size:26px;margin:0}
+.banco-head span{color:var(--creme-mute);font-size:14px}
+#banco-lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--vinho-line)}
+#banco-lista li{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid var(--vinho-line)}
+#banco-lista .bt{min-width:0}
+#banco-lista b{display:block;font-size:16px;font-weight:700}
+#banco-lista small{color:var(--creme-mute);font-size:13px}
+#banco-lista a{flex:none;font-weight:800;font-size:14px;color:var(--creme);text-decoration:none;border:1.5px solid var(--vinho-line);border-radius:999px;padding:9px 16px}
+#banco-lista a:hover{border-color:var(--caramelo)}
+.how-strip{padding-block:4px 0}
+.how-strip ol{list-style:none;margin:0;padding:18px 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:s;border-block:1px solid var(--vinho-line)}
+.how-strip li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;column-gap:10px;font-size:14px;line-height:1.35}
+.how-strip li::before{content:counter(s);grid-row:span 2;width:30px;height:30px;border-radius:50%;background:var(--caramelo);color:var(--bordo-deep);font-weight:800;display:grid;place-items:center;font-size:14px}
+.how-strip b{font-weight:800}
+.how-strip span{color:var(--creme-mute)}
+
+@media (max-width:820px){
+  .paths{grid-template-columns:1fr;max-width:560px}
+  .how{grid-template-columns:1fr}
+  .vaga{grid-template-columns:1fr;padding:26px}
+  .vagas-mais{grid-template-columns:1fr}
+  .form-shell{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:480px){
+  .row2{grid-template-columns:1fr}
+  .card{padding:22px}
+  .choice button{padding:14px 12px}
+  .choice button span{font-size:12px}
+  .brand-word,.top-cta{white-space:nowrap}
+  .top-cta .long{display:none}
+  .top-cta .short{display:inline}
+  section.block{padding-block:52px}
+  .hero{padding-block:24px 32px}
+  .hero p.lead{margin:20px 0 26px}
+  .paths{grid-template-columns:1fr}
+  .vd{padding:22px}
+  .vd-facts{grid-template-columns:1fr 1fr}
+  .how-strip ol{grid-template-columns:1fr;gap:14px}
+  #banco-lista li{flex-wrap:wrap}
+  #banco-lista a{padding:8px 14px}
+  #vaga{padding-bottom:32px !important}
+  .path{padding:18px 52px 18px 20px}
+  .meta{margin-top:28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="topband">
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="#inicio" aria-label="Fora da Caixa Black">
+        <svg class="logo" viewBox="104 124 378 248" role="img" aria-label="fora da caixa">
+          <g fill="none" stroke-width="5" stroke-linecap="butt" stroke-linejoin="miter">
+            <polyline points="229,137 119,137 119,226" stroke="#F6EADF"/>
+            <polyline points="264,137 379,137 379,226" stroke="#F6EADF" stroke-opacity=".5"/>
+            <polyline points="119,262 119,357 227,357" stroke="#F6EADF" stroke-opacity=".5"/>
+            <polyline points="264,357 379,357 379,262" stroke="#F6EADF"/>
+          </g>
+          <text x="288" y="251" font-family="Montserrat, 'Segoe UI', sans-serif" font-size="22" font-weight="400" letter-spacing="2.3" fill="#F6EADF">fora da caixa</text>
+        </svg>
+        <span class="tag-black">Black</span>
+      </a>
+      <a class="top-cta" href="#form-card"><span class="long">Fazer meu cadastro</span><span class="short">Cadastrar</span></a>
+    </header>
+  </div>
+</div>
+
+<main id="inicio">
+  <div class="wrap hero">
+    <p class="eyebrow">Banco de Talentos Negros</p>
+    <h1>Ei, você, pessoa negra! <em>Seu talento merece ser encontrado.</em></h1>
+    <p class="apoio">Conectamos profissionais pretos e pardos a empresas que buscam talentos e querem construir equipes mais diversas.</p>
+    <p class="lead">Cadastre seu perfil e faça parte dessa rede de profissionais de diferentes áreas, experiências e trajetórias.</p>
+    <div class="paths" role="group" aria-label="Escolha seu caminho">
+      <a class="path path-cand" href="#vaga" id="go-cand">
+        <span class="path-k">Sou candidato</span>
+        <span class="path-t">Ver vagas e fazer meu cadastro</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="path path-emp" href="#form-card" id="go-emp">
+        <span class="path-k">Sou empresa</span>
+        <span class="path-t">Quero contratar talentos negros</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="path path-prof" href="#profissionais" id="go-prof">
+        <span class="path-k">Procuro um profissional</span>
+        <span class="path-t">Encontre profissionais negros</span>
+        <span class="path-cta">Encontrar profissionais <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+    <a class="path-link" href="#form-card" id="go-prest" data-modo="prest">Sou profissional e quero divulgar meus serviços <span aria-hidden="true">→</span></a>
+  </div>
+
+
+  <section class="block" id="vaga" style="padding-top:8px">
+    <div class="wrap">
+      <h2 class="section-title" id="vaga-titulo">Vaga em destaque</h2>
+      <div id="vaga-destaque"></div>
+      <div class="banco">
+        <div class="banco-head">
+          <h3>Banco de vagas</h3>
+          <span>Outras oportunidades abertas</span>
+        </div>
+        <ul id="banco-lista"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-strip" aria-label="Como funciona">
+    <div class="wrap">
+      <ol>
+        <li><b>Cadastre-se</b><span>em 3 minutos, com LinkedIn e currículo</span></li>
+        <li><b>Seu perfil é lido</b><span>por uma consultora de RH</span></li>
+        <li><b>A vaga chega</b><span>pelo WhatsApp ou e-mail</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="cadastro">
+    <div class="wrap form-shell">
+      <div>
+        <h2 class="section-title">Faça seu cadastro</h2>
+        <p class="section-sub">Leva cerca de 3 minutos. Seus dados são usados só em processos seletivos, conforme a LGPD.</p>
+      </div>
+
+      <div class="card" id="form-card" aria-live="polite">
+        <form id="form" novalidate>
+          <div class="choice" role="group" aria-label="Você é">
+            <button type="button" id="opt-cand" aria-pressed="true"><b>Candidato</b><span>Busco vaga</span></button>
+            <button type="button" id="opt-emp" aria-pressed="false"><b>Empresa</b><span>Quero contratar</span></button>
+            <button type="button" id="opt-prest" aria-pressed="false"><b>Profissional</b><span>Divulgo serviços</span></button>
+          </div>
+
+          <!-- CANDIDATO -->
+          <div id="flow-cand">
+            <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+            <p class="step-label" id="step-count">Etapa 1 de 3</p>
+
+            <div class="step" data-step="1">
+              <h3 class="step-title">Sobre você</h3>
+              <div class="fields">
+                <label class="f">Para qual vaga você está se candidatando?
+                  <select id="c-vaga" required>
+                    <option value="">Selecione</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f">Nome completo<input type="text" id="c-nome" autocomplete="name" required><span class="err"></span></label>
+                <div class="row2">
+                  <label class="f">E-mail<input type="email" id="c-email" autocomplete="email" required><span class="err"></span></label>
+                  <label class="f">WhatsApp<input type="tel" id="c-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
+                </div>
+                <label class="f">Cidade e estado<input type="text" id="c-cidade" placeholder="São Paulo, SP" required><span class="err"></span></label>
+              </div>
+            </div>
+
+            <div class="step" data-step="2" hidden>
+              <h3 class="step-title">Sua carreira</h3>
+              <div class="fields">
+                <label class="f">Área de atuação
+                  <select id="c-area" required>
+                    <option value="">Selecione</option>
+                    <option>Direito</option><option>Educação</option><option>Negócios e Administração</option>
+                    <option>Comercial e Vendas</option><option>Finanças e Contabilidade</option><option>Recursos Humanos</option>
+                    <option>Tecnologia</option><option>Saúde</option><option>Comunicação e Marketing</option><option>Outra</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f">Formação
+                  <select id="c-formacao" required>
+                    <option value="">Selecione</option>
+                    <option>Ensino Médio</option><option>Ensino Técnico</option><option>Graduação em andamento</option>
+                    <option>Graduação completa</option><option>Pós-graduação ou MBA</option><option>Mestrado ou Doutorado</option>
+                  </select><span class="err"></span>
+                </label>
+                <div class="row2">
+                  <label class="f">Nível
+                    <select id="c-nivel" required>
+                      <option value="">Selecione</option>
+                      <option>Estágio</option><option>Júnior</option><option>Pleno</option><option>Sênior</option><option>Liderança ou Gestão</option>
+                    </select><span class="err"></span>
+                  </label>
+                  <label class="f">Pretensão salarial<input type="text" id="c-pretensao" inputmode="numeric" placeholder="R$ 3.000" required><span class="err"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" data-step="3" hidden>
+              <h3 class="step-title">LinkedIn e currículo</h3>
+              <div class="fields">
+                <label class="f">Link do seu LinkedIn<input type="url" id="c-linkedin" inputmode="url" autocapitalize="off" autocorrect="off" placeholder="linkedin.com/in/seu-nome" required><span class="err"></span></label>
+                <details class="ajuda">
+                  <summary>Como encontro o link do meu LinkedIn?</summary>
+                  <div class="ajuda-corpo">
+                    <p><b>No celular:</b> abra o app do LinkedIn, toque na sua foto e em <b>Ver perfil</b>. Depois, toque nos três pontinhos (···), escolha <b>Compartilhar perfil</b> e <b>Copiar link</b>. É só colar aqui.</p>
+                    <p><b>No computador:</b> abra o seu perfil no LinkedIn e copie o endereço da barra do navegador. Ele começa com <b>linkedin.com/in/</b>.</p>
+                  </div>
+                </details>
+                <div class="f" style="display:grid;gap:6px">
+                  <span style="font-size:13px;font-weight:700;color:var(--bordo)">Currículo</span>
+                  <label class="drop" id="drop">
+                    <input type="file" id="c-cv" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                    <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F6EADF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg></span>
+                    <span><b id="cv-title">Enviar arquivo</b><span id="cv-name">PDF ou Word, até 5 MB</span></span>
+                  </label>
+                  <span class="err" id="cv-err"></span>
+                </div>
+                <label class="check"><input type="checkbox" id="c-lgpd" required> Autorizo o Fora da Caixa a guardar meus dados e compartilhar meu perfil com empresas parceiras para processos seletivos.</label>
+                <span class="err" id="lgpd-err"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMPRESA -->
+          <div id="flow-emp" hidden>
+            <p class="step-label">Para empresas</p>
+            <h3 class="step-title">Vamos encontrar seu próximo talento</h3>
+            <div class="fields">
+              <label class="f">Nome da empresa<input type="text" id="e-empresa" autocomplete="organization" required><span class="err"></span></label>
+              <label class="f">Pessoa de contato<input type="text" id="e-contato" autocomplete="name" required><span class="err"></span></label>
+              <div class="row2">
+                <label class="f">E-mail<input type="email" id="e-email" autocomplete="email" required><span class="err"></span></label>
+                <label class="f">WhatsApp<input type="tel" id="e-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
+              </div>
+              <label class="f">Cargo que busca<input type="text" id="e-cargo" placeholder="Ex.: Analista Financeiro Pleno" required><span class="err"></span></label>
+            </div>
+          </div>
+
+          <!-- PROFISSIONAL (divulgação de serviços) -->
+          <div id="flow-prest" hidden>
+            <p class="step-label">Para profissionais</p>
+            <h3 class="step-title">Divulgue seus serviços</h3>
+            <p class="hint" style="margin:-10px 0 16px">Este cadastro é para divulgar serviços profissionais. Ele é separado do banco de candidatos e não participa de processos seletivos.</p>
+            <div class="fields">
+              <label class="f">Nome profissional<input type="text" id="p-nome" autocomplete="name" required><span class="err"></span></label>
+              <label class="f">Escritório ou negócio <span class="opt">(opcional)</span><input type="text" id="p-negocio" autocomplete="organization"><span class="err"></span></label>
+              <div class="row2">
+                <label class="f">Área de atuação
+                  <select id="p-area" required>
+                    <option value="">Selecione</option>
+                    <option>Advocacia</option><option>Consultoria jurídica</option><option>Outra área do Direito</option><option>Outra área (não jurídica)</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f">Especialidades <span class="opt">(opcional)</span><input type="text" id="p-espec" placeholder="Ex.: Trabalhista, Digital"><span class="err"></span></label>
+              </div>
+              <label class="f">Descrição dos serviços<textarea id="p-servico" maxlength="400" placeholder="Conte em poucas linhas o que você faz e para quem." required></textarea><span class="err"></span></label>
+              <div class="row2">
+                <label class="f">Cidade e estado<input type="text" id="p-cidade" placeholder="São Paulo, SP" required><span class="err"></span></label>
+                <label class="f">Atendimento
+                  <select id="p-atendimento" required>
+                    <option value="">Selecione</option><option>Presencial</option><option>Online</option><option>Presencial e online</option>
+                  </select><span class="err"></span>
+                </label>
+              </div>
+              <div class="row2">
+                <label class="f">E-mail profissional<input type="email" id="p-email" autocomplete="email" required><span class="err"></span></label>
+                <label class="f">WhatsApp profissional<input type="tel" id="p-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
+              </div>
+              <label class="f">Site, Instagram ou portfólio <span class="opt">(opcional)</span><input type="text" id="p-portfolio" placeholder="@seuperfil ou link"><span class="err"></span></label>
+              <fieldset class="fieldset">
+                <legend>Quais contatos podem aparecer na página?</legend>
+                <div class="checks">
+                  <label class="check"><input type="checkbox" id="pc-email" checked> E-mail</label>
+                  <label class="check"><input type="checkbox" id="pc-whats"> WhatsApp</label>
+                  <label class="check"><input type="checkbox" id="pc-site"> Site ou Instagram</label>
+                </div>
+                <span class="err" id="pc-err"></span>
+              </fieldset>
+              <label class="check"><input type="checkbox" id="p-lgpd"> Autorizo o Fora da Caixa a guardar meus dados para esta finalidade, conforme a LGPD.</label>
+              <label class="check"><input type="checkbox" id="p-divulga"> Autorizo a divulgação pública do meu nome profissional, área, descrição dos serviços, localização e dos contatos que marquei acima.</label>
+              <span class="err" id="p-lgpd-err"></span>
+              <p class="hint" style="margin:0">Seu perfil aparece na página depois de uma revisão do Fora da Caixa.</p>
+            </div>
+          </div>
+
+          <p class="err" id="send-err" role="alert" style="margin:14px 0 0"></p>
+          <div class="nav">
+            <button type="button" class="back" id="back" hidden>Voltar</button>
+            <span></span>
+            <button type="submit" class="btn btn-primary" id="next">Continuar</button>
+          </div>
+        </form>
+
+        <div class="done" id="done" hidden>
+          <div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F6EADF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h3 id="done-title">Obrigado pelo seu cadastro!</h3>
+          <p class="note" id="preview-note">Prévia do visual: nesta versão o envio ainda não é salvo.</p>
+          <button type="button" class="btn btn-ghost" id="again" style="color:var(--bordo);box-shadow:inset 0 0 0 1.5px #D9C4B6;margin-top:10px">Novo cadastro</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="profissionais">
+    <div class="wrap">
+      <p class="eyebrow">Rede de profissionais</p>
+      <h2 class="section-title">Encontre profissionais negros</h2>
+      <p class="section-sub">Advocacia, consultoria jurídica e outros serviços oferecidos por profissionais pretos e pardos. Cada perfil é publicado com autorização do profissional, depois de uma revisão do Fora da Caixa.</p>
+
+      <div class="filtros" id="filtros" hidden>
+        <label class="fl">Área
+          <select id="f-area"><option value="">Todas as áreas</option></select>
+        </label>
+        <label class="fl">Localização
+          <select id="f-local"><option value="">Todas as localizações</option></select>
+        </label>
+        <label class="fl fl-busca">Buscar
+          <input type="search" id="f-busca" placeholder="Nome, especialidade ou serviço">
+        </label>
+      </div>
+
+      <p class="prof-status" id="prof-status" role="status">Carregando profissionais…</p>
+      <div class="prof-grid" id="prof-lista"></div>
+
+      <div class="prof-vazio" id="prof-vazio" hidden>
+        <h3>Ainda não há profissionais divulgados por aqui.</h3>
+        <p>Estamos formando essa rede agora. Se você é profissional negro e oferece serviços jurídicos, cadastre seus serviços para aparecer nesta página.</p>
+        <a class="btn btn-primary" href="#form-card" data-modo="prest">Divulgar meus serviços</a>
+      </div>
+
+      <p class="prof-cta" id="prof-cta" hidden>É profissional e quer aparecer aqui? <a href="#form-card" data-modo="prest">Cadastre seus serviços</a></p>
+    </div>
+  </section>
+</main>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden></div>
+
+<footer>
+  <div class="wrap">
+    <span>Fora da Caixa · Black</span>
+    <span>Empregabilidade e liderança para pessoas negras</span>
+  </div>
+</footer>
+
+<script>
+/* ===== VAGAS: a primeira da lista é sempre a "Vaga em destaque". Para atualizar, edite só esta lista. ===== */
+const VAGAS = [
+  {
+    destaque: true,
+    titulo: "Estágio em Comunicação",
+    tipo: "Estágio",
+    paraQuem: "A partir do 2º ano de Relações Públicas ou Jornalismo",
+    modelo: "Híbrido",
+    horario: "Seg. a sex., das 10h às 16h ou das 13h às 19h",
+    atividades: [
+      "Disponibilidade para contrato de estágio de, no mínimo, um ano",
+      "Boa comunicação e excelente escrita",
+      "Curiosidade para aprender sobre PR",
+      "Organização e atenção aos detalhes",
+      "Postura proativa e espírito colaborativo",
+      "Diferencial: facilidade para propor ideias criativas e engajar pessoas por meio da comunicação"
+    ]
+  },
+  {
+    destaque: true,
+    titulo: "Assistente Jurídico(a)",
+    tipo: "Direito",
+    onde: "Escritório de Direito Digital e Contratos · Tatuapé, SP",
+    paraQuem: "Pessoa no último ano de Direito ou recém-formada",
+    modelo: "Híbrido, até 2 dias presenciais",
+    horario: "Seg. a sex., das 10h às 18h",
+    atividades: [
+      "Acompanhamento de processos, prazos e intimações",
+      "Elaboração de peças e contratos para criadores de conteúdo",
+      "Rotina com ferramentas de IA jurídica"
+    ],
+    detalhes: {
+      intro: "Escritório de advocacia especializado em Direito Digital e Contratos, no Tatuapé (Zona Leste de São Paulo), com clientes em todo o Brasil. Buscamos uma pessoa para crescer junto com o escritório, com acompanhamento próximo da advogada responsável.",
+      fatos: [["Modelo","Híbrido, até 2 dias presenciais no Tatuapé"],["Horário","Segunda a sexta, das 10h às 18h, com 1h de almoço"],["Para quem","Pessoa no último ano de Direito ou recém-formada"]],
+      secoes: [
+        { titulo: "O dia a dia", itens: [
+          "Leitura de publicações e intimações dos processos no Astrea",
+          "Alimentação e atualização do Astrea, com dados e histórico de cada processo",
+          "Lançamento de prazos com data fatal e dupla checagem",
+          "Elaboração de peças jurídicas, de complexidade simples a alta, com supervisão e autonomia crescente",
+          "Peticionamento",
+          "Despacho virtual com juízes, quando necessário, com treinamento",
+          "Revisão e elaboração de contratos para influenciadores e criadores de conteúdo (publicidade, agência, direito de imagem e exclusividade)",
+          "Organização das provas dos casos, como prints e atas notariais",
+          "Comunicação com clientes do escritório",
+          "Triagem diária do e-mail do escritório"
+        ]},
+        { titulo: "Ferramentas", chips: ["Astrea", "Claude", "Jurisia"] },
+        { titulo: "O que buscamos", itens: [
+          "Estar no último ano de Direito ou ter concluído o curso recentemente (OAB ativa não é obrigatória)",
+          "Vivência anterior em escritório de advocacia, por estágio ou experiência equivalente, mesmo que fora do direito digital",
+          "Organização e respeito a prazos",
+          "Sigilo profissional",
+          "Uso crítico de IA"
+        ]}
+      ]
+    }
+  }
+];
+(function(){
+  const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
+  const destaques = VAGAS.filter(x=>x.destaque), outras = VAGAS.filter(x=>!x.destaque);
+  const titulo = document.getElementById("vaga-titulo");
+  if(titulo) titulo.textContent = destaques.length > 1 ? "Vagas em destaque" : "Vaga em destaque";
+  const box = document.getElementById("vaga-destaque");
+  const sheet = document.getElementById("sheet");
+  let ultimoBotao = null;
+
+  function irParaCadastro(nome){
+    const s = document.getElementById("c-vaga"); if(s) s.value = nome;
+    const c = document.getElementById("opt-cand"); if(c) c.click();
+    document.getElementById("form-card").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+  function fechar(){
+    sheet.hidden = true; sheet.textContent = "";
+    document.documentElement.style.overflow = ""; document.body.style.overflow = "";
+    if(ultimoBotao) ultimoBotao.focus();
+  }
+  function abrir(v, botao){
+    ultimoBotao = botao;
+    const d = v.detalhes;
+    sheet.textContent = "";
+    const inn = el("div","sheet-in");
+    const top = el("div","sheet-top");
+    const back = el("button","sheet-back"); back.type = "button";
+    back.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+    back.append("Voltar às vagas");
+    back.addEventListener("click", fechar);
+    top.append(back, el("span","tag-black","Black"));
+    inn.append(top);
+    const pills = el("div","pills"); pills.append(el("span","pill","Em destaque")); if(v.tipo) pills.append(el("span","pill out",v.tipo)); inn.append(pills);
+    const h = el("h2",null,v.titulo); h.id = "sheet-title"; inn.append(h);
+    if(d.intro) inn.append(el("p","intro",d.intro));
+    if(d.fatos){ const f = el("div","sheet-facts"); d.fatos.forEach(([k,val])=>{ const x=el("div"); x.append(el("span",null,k), el("b",null,val)); f.append(x); }); inn.append(f); }
+    d.secoes.forEach(s=>{
+      const sec = el("section","sheet-sec"); sec.append(el("h3",null,s.titulo));
+      if(s.chips){ const c = el("div","chips"); s.chips.forEach(t=>c.append(el("span","chip",t))); sec.append(c); }
+      if(s.itens){ const ul = el("ul"); s.itens.forEach(it=>{ const li = el("li"); if(Array.isArray(it)){ li.append(el("b",null,it[0])); li.append(el("small",null,it[1])); } else { li.textContent = it; } ul.append(li); }); sec.append(ul); }
+      inn.append(sec);
+    });
+    const cta = el("div","sheet-cta");
+    const b = el("button","btn btn-primary","Quero concorrer"); b.type = "button";
+    b.addEventListener("click", ()=>{ fechar(); irParaCadastro(v.titulo); });
+    cta.append(b); inn.append(cta);
+    sheet.append(inn);
+    sheet.hidden = false; sheet.scrollTop = 0;
+    document.documentElement.style.overflow = "hidden"; document.body.style.overflow = "hidden";
+    back.focus();
+  }
+  document.addEventListener("keydown", e=>{ if(e.key === "Escape" && !sheet.hidden) fechar(); });
+
+  destaques.forEach(v=>{
+    const card = el("div","vd");
+    const top = el("div","vd-top"); top.append(el("span","pill","Em destaque")); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
+    card.append(el("h3",null,v.titulo));
+    if(v.onde) card.append(el("p","where",v.onde));
+    const facts = el("div","vd-facts");
+    [["Para quem",v.paraQuem],["Modelo",v.modelo],["Horário",v.horario]].forEach(([k,val])=>{ if(!val) return; const d=el("div"); d.append(el("span",null,k), el("b",null,val)); facts.append(d); });
+    if(facts.children.length) card.append(facts);
+    if(v.atividades){ const ul=el("ul"); v.atividades.forEach(a=>ul.append(el("li",null,a))); card.append(ul); }
+    const acoes = el("div","vd-acoes");
+    const cta = el("a","btn btn-primary","Quero concorrer"); cta.href="#form-card"; cta.dataset.vaga=v.titulo; acoes.append(cta);
+    if(v.detalhes){ const s = el("button","saiba","Saiba mais sobre a vaga"); s.type="button"; s.addEventListener("click", ()=>abrir(v, s)); acoes.append(s); }
+    card.append(acoes);
+    box.append(card);
+  });
+  const lista = document.getElementById("banco-lista");
+  outras.forEach(x=>{
+    const li=el("li"), t=el("div","bt");
+    t.append(el("b",null,x.titulo), el("small",null,[x.tipo,x.resumo].filter(Boolean).join(" · ")));
+    const a=el("a",null,"Quero concorrer"); a.href="#form-card"; a.dataset.vaga=x.titulo;
+    li.append(t,a); lista.append(li);
+  });
+  if(!outras.length) document.querySelector(".banco").hidden = true;
+  const sel = document.getElementById("c-vaga");
+  destaques.concat(outras).forEach(x=>{ sel.append(el("option",null,x.titulo)); });
+  sel.append(el("option",null,"Banco de talentos (sem vaga específica)"));
+})();
+</script>
+<script>
+document.getElementById("go-emp").addEventListener("click",()=>document.getElementById("opt-emp").click());
+document.querySelectorAll('[data-modo="prest"]').forEach(a=>a.addEventListener("click",()=>document.getElementById("opt-prest").click()));
+document.getElementById("go-cand").addEventListener("click",()=>document.getElementById("opt-cand").click());
+document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",()=>{
+  const s = document.getElementById("c-vaga"); if(s) s.value = a.dataset.vaga;
+  document.getElementById("opt-cand").click();
+}));
+</script>
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  let mode = "cand", step = 1;
+  const steps = [...document.querySelectorAll("#flow-cand .step")];
+  const bars = [...document.querySelectorAll(".progress i")];
+
+  function setMode(m){
+    mode = m;
+    $("#opt-cand").setAttribute("aria-pressed", m==="cand");
+    $("#opt-emp").setAttribute("aria-pressed", m==="emp");
+    $("#opt-prest").setAttribute("aria-pressed", m==="prest");
+    $("#flow-cand").hidden = m!=="cand";
+    $("#flow-emp").hidden = m!=="emp";
+    $("#flow-prest").hidden = m!=="prest";
+    $("#send-err").textContent = "";
+    render();
+  }
+  function render(){
+    if(mode==="cand"){
+      steps.forEach(s => s.hidden = Number(s.dataset.step)!==step);
+      bars.forEach((b,i)=> b.classList.toggle("on", i < step));
+      $("#step-count").textContent = "Etapa " + step + " de 3";
+      $("#back").hidden = step===1;
+      $("#next").textContent = step===3 ? "Enviar cadastro" : "Continuar";
+    } else {
+      $("#back").hidden = true;
+      $("#next").textContent = mode==="emp" ? "Enviar contato" : "Enviar cadastro";
+    }
+  }
+  function fail(el, msg){
+    el.classList.add("invalid");
+    const e = el.parentElement.querySelector(".err"); if(e) e.textContent = msg;
+    return false;
+  }
+  function clear(scope){
+    scope.querySelectorAll(".invalid").forEach(x=>x.classList.remove("invalid"));
+    scope.querySelectorAll(".err").forEach(x=>x.textContent="");
+  }
+  function checkFields(scope){
+    clear(scope);
+    let ok = true;
+    scope.querySelectorAll("input[required]:not([type=checkbox]), select[required], textarea[required]").forEach(el=>{
+      const v = el.value.trim();
+      if(!v){ ok = fail(el, el.tagName==="SELECT" ? "Escolha uma opção." : "Preencha este campo.") && ok; return; }
+      if(el.type==="email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) ok = fail(el,"Confira o e-mail, parece incompleto.") && ok;
+      if(el.type==="tel" && v.replace(/\D/g,"").length < 10) ok = fail(el,"Informe o número com DDD.") && ok;
+      if(el.type==="url" && !/(linkedin\.com\/|lnkd\.in\/)/i.test(v)) ok = fail(el,"Cole o link do seu perfil, por exemplo linkedin.com/in/seu-nome. Toque em \"Como encontro o link\" logo abaixo se precisar de ajuda.") && ok;
+    });
+    return ok;
+  }
+
+  // máscara simples de WhatsApp
+  document.querySelectorAll("input[type=tel]").forEach(el=>el.addEventListener("input",()=>{
+    let d = el.value.replace(/\D/g,"").slice(0,11);
+    if(d.length>6) el.value = "("+d.slice(0,2)+") "+d.slice(2,d.length-4)+"-"+d.slice(-4);
+    else if(d.length>2) el.value = "("+d.slice(0,2)+") "+d.slice(2);
+    else el.value = d;
+  }));
+
+  // currículo
+  const cv = $("#c-cv"), drop = $("#drop");
+  cv.addEventListener("change", ()=>{
+    $("#cv-err").textContent = ""; drop.classList.remove("invalid");
+    const f = cv.files[0]; if(!f) return;
+    const okType = /\.(pdf|docx?)$/i.test(f.name);
+    if(!okType){ cv.value=""; $("#cv-err").textContent="Envie o currículo em PDF ou Word."; return; }
+    if(f.size > 5*1024*1024){ cv.value=""; $("#cv-err").textContent="O arquivo passou de 5 MB. Tente uma versão em PDF."; return; }
+    $("#cv-title").textContent = "Arquivo anexado";
+    $("#cv-name").textContent = f.name;
+  });
+  ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev,()=>drop.classList.add("over")));
+  ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,()=>drop.classList.remove("over")));
+
+  $("#opt-cand").addEventListener("click", ()=>setMode("cand"));
+  $("#opt-emp").addEventListener("click", ()=>setMode("emp"));
+  $("#opt-prest").addEventListener("click", ()=>setMode("prest"));
+  $("#back").addEventListener("click", ()=>{ if(step>1){ step--; render(); } });
+
+  const val = id => document.getElementById(id).value.trim();
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbxOP89i_4C3uYkY1qekf2P_6PPZVrpMd1ZZrGE980ZaYrsDKFtT7zpgkrB6pxHdhy2-/exec";
+  $("#preview-note").hidden = true;
+
+  function lerArquivo(f){
+    return new Promise((ok, no)=>{
+      if(!f) return ok(null);
+      const r = new FileReader();
+      r.onload = ()=> ok({ nome: f.name, mime: f.type || "application/octet-stream", base64: String(r.result).split(",")[1] });
+      r.onerror = ()=> no(new Error("Não foi possível ler o arquivo."));
+      r.readAsDataURL(f);
+    });
+  }
+  async function enviar(tipo, dados, arquivo, titulo, texto){
+    $("#send-err").textContent = "";
+    const btn = $("#next"), label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Enviando...";
+    try{
+      const file = await lerArquivo(arquivo);
+      const resp = await fetch(ENDPOINT, { method: "POST", body: JSON.stringify({ tipo, dados, arquivo: file }) });
+      const res = await resp.json();
+      if(!res || !res.ok) throw new Error(res && res.erro ? res.erro : "erro no envio");
+      btn.disabled=false; btn.textContent=label; finish(titulo, texto);
+    }catch(err){
+      btn.disabled=false; btn.textContent=label;
+      $("#send-err").textContent = "Não conseguimos enviar agora. Confira sua conexão e tente de novo. (" + (err && err.message ? err.message : "erro") + ")";
+    }
+  }
+
+  $("#form").addEventListener("submit", e=>{
+    e.preventDefault();
+    if(mode==="emp"){
+      if(!checkFields($("#flow-emp"))) return;
+      enviar("Empresa", {
+        "Empresa": val("e-empresa"), "Contato": val("e-contato"), "E-mail": val("e-email"),
+        "WhatsApp": val("e-whats"), "Cargo que busca": val("e-cargo")
+      }, null, "Contato recebido!", "Obrigada pelo interesse em contratar com intenção. Vamos falar com você em breve para entender a vaga.");
+      return;
+    }
+    if(mode==="prest"){
+      if(!checkFields($("#flow-prest"))) return;
+      const publicos = [];
+      if($("#pc-email").checked) publicos.push("E-mail");
+      if($("#pc-whats").checked) publicos.push("WhatsApp");
+      if($("#pc-site").checked) publicos.push("Site ou Instagram");
+      $("#pc-err").textContent = "";
+      if(!publicos.length){ $("#pc-err").textContent = "Marque pelo menos um contato para aparecer na página."; return; }
+      if($("#pc-site").checked && !val("p-portfolio")){ $("#pc-err").textContent = "Preencha o site, Instagram ou portfólio, ou desmarque essa opção."; return; }
+      if(!$("#p-lgpd").checked || !$("#p-divulga").checked){ $("#p-lgpd-err").textContent="Para divulgar seus serviços, precisamos das duas autorizações acima."; return; }
+      $("#p-lgpd-err").textContent="";
+      enviar("Prestador", {
+        "Nome": val("p-nome"), "Negócio": val("p-negocio"), "Área de atuação": val("p-area"), "Especialidades": val("p-espec"),
+        "Serviço": val("p-servico"), "Cidade": val("p-cidade"), "Atendimento": val("p-atendimento"),
+        "Portfólio": val("p-portfolio"), "WhatsApp": val("p-whats"), "E-mail": val("p-email"),
+        "Contatos públicos": publicos.join(", "), "Aceite LGPD": "Sim", "Autoriza divulgação": "Sim"
+      }, null, "Cadastro recebido!", "");
+      return;
+    }
+    const cur = steps[step-1];
+    if(!checkFields(cur)) return;
+    if(step===3){
+      let ok = true;
+      if(!cv.files[0]){ $("#cv-err").textContent="Anexe seu currículo para concluir."; drop.classList.add("invalid"); ok=false; }
+      if(!$("#c-lgpd").checked){ $("#lgpd-err").textContent="Precisamos da sua autorização para guardar seus dados."; ok=false; } else { $("#lgpd-err").textContent=""; }
+      if(!ok) return;
+      enviar("Candidato", {
+        "Nome": val("c-nome"), "E-mail": val("c-email"), "WhatsApp": val("c-whats"), "Cidade": val("c-cidade"),
+        "Área de atuação": val("c-area"), "Formação": val("c-formacao"), "Nível": val("c-nivel"),
+        "Pretensão salarial": val("c-pretensao"), "LinkedIn": val("c-linkedin"),
+        "Vaga de interesse": val("c-vaga") || "Banco de talentos", "Aceite LGPD": "Sim"
+      }, cv.files[0], "Cadastro recebido!", "Obrigada por fazer parte. Quando surgir uma oportunidade com o seu perfil, a gente entra em contato.");
+      return;
+    }
+    step++; render();
+  });
+
+  function finish(){
+    $("#form").hidden = true; $("#done").hidden = false;
+  }
+  $("#again").addEventListener("click", ()=>{
+    $("#form").reset(); step = 1;
+    $("#cv-title").textContent = "Enviar arquivo"; $("#cv-name").textContent = "PDF ou Word, até 5 MB";
+    clear(document);
+    $("#done").hidden = true; $("#form").hidden = false; setMode("cand");
+  });
+
+  render();
+})();
+</script>
+
+<script>
+/* ===== PROFISSIONAIS: lista vem da aba "Prestadores" da planilha.
+   Só aparecem perfis com "Autoriza divulgação" = Sim e "Publicado" = Sim (a revisão é feita na planilha). ===== */
+(function(){
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbxOP89i_4C3uYkY1qekf2P_6PPZVrpMd1ZZrGE980ZaYrsDKFtT7zpgkrB6pxHdhy2-/exec";
+  const $ = id => document.getElementById(id);
+  const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
+  let todos = [];
+
+  function linkSite(v){
+    v = (v||"").trim(); if(!v) return "";
+    if(/^https?:\/\//i.test(v)) return v;
+    if(/^@[\w.]+$/.test(v)) return "https://instagram.com/" + v.slice(1);
+    if(/^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(v)) return "https://" + v;
+    return "";
+  }
+  function linkZap(v){
+    let d = (v||"").replace(/\D/g,""); if(d.length < 10) return "";
+    if(!d.startsWith("55")) d = "55" + d;
+    return "https://wa.me/" + d;
+  }
+  function card(p){
+    const c = el("article","prof");
+    c.append(el("h3",null,p.nome));
+    if(p.negocio) c.append(el("p","neg",p.negocio));
+    const tags = el("div","tags");
+    if(p.area) tags.append(el("span","pill",p.area));
+    (p.especialidades||"").split(/[,;]/).map(x=>x.trim()).filter(Boolean).slice(0,4).forEach(x=>tags.append(el("span","pill out",x)));
+    if(tags.children.length) c.append(tags);
+    const loc = [p.cidade, p.atendimento].filter(Boolean).join(" · ");
+    if(loc) c.append(el("p","loc",loc));
+    if(p.servicos) c.append(el("p","desc",p.servicos));
+    const ct = el("div","contatos");
+    if(p.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)){ const a = el("a",null,"E-mail"); a.href = "mailto:" + p.email; ct.append(a); }
+    const z = linkZap(p.whatsapp); if(z){ const a = el("a",null,"WhatsApp"); a.href = z; a.target = "_blank"; a.rel = "noopener"; ct.append(a); }
+    const s = linkSite(p.portfolio); if(s){ const a = el("a",null,"Site ou Instagram"); a.href = s; a.target = "_blank"; a.rel = "noopener"; ct.append(a); }
+    if(ct.children.length) c.append(ct);
+    return c;
+  }
+  function opcoes(sel, valores){
+    [...new Set(valores.filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR")).forEach(v=>sel.append(el("option",null,v)));
+  }
+  function norm(t){ return (t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+  function render(){
+    const area = $("f-area").value, local = $("f-local").value, busca = norm($("f-busca").value.trim());
+    const lista = todos.filter(p => (!area || p.area === area) && (!local || p.cidade === local) &&
+      (!busca || norm([p.nome,p.negocio,p.especialidades,p.servicos,p.area].join(" ")).includes(busca)));
+    $("prof-lista").textContent = "";
+    lista.forEach(p => $("prof-lista").append(card(p)));
+    $("prof-status").hidden = lista.length > 0;
+    $("prof-status").textContent = lista.length ? "" : "Nenhum profissional encontrado com esses filtros.";
+  }
+  function vazio(){
+    $("prof-status").hidden = true; $("prof-vazio").hidden = false; $("filtros").hidden = true; $("prof-cta").hidden = true;
+  }
+  fetch(ENDPOINT + "?acao=prestadores")
+    .then(r => r.json())
+    .then(res => {
+      if(!res || !res.ok) throw new Error("resposta inválida");
+      todos = (res.profissionais || []).filter(p => p && p.nome);
+      if(!todos.length){ vazio(); return; }
+      opcoes($("f-area"), todos.map(p=>p.area));
+      opcoes($("f-local"), todos.map(p=>p.cidade));
+      $("filtros").hidden = false; $("prof-cta").hidden = false;
+      ["f-area","f-local"].forEach(id=>$(id).addEventListener("change", render));
+      $("f-busca").addEventListener("input", render);
+      render();
+    })
+    .catch(() => { $("prof-status").textContent = "Não foi possível carregar a lista agora. Tente novamente em alguns instantes."; });
+})();
+</script>
+</body>
+</html>
