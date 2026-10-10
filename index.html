@@ -93,12 +93,16 @@ a{color:var(--caramelo)}
 .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
 /* Aviso da vaga (pop-up) */
 .aviso{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(20,4,9,.72)}
-.aviso-box{width:100%;max-width:440px;background:var(--creme);color:var(--bordo);border-radius:22px;padding:28px 24px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.aviso-k{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A5A3C}
-.aviso-k svg{width:16px;height:16px}
-.aviso-box h2{font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:30px;line-height:1.08;margin:10px 0 10px;text-wrap:balance}
-.aviso-box p{margin:0;font-size:16px;line-height:1.55;color:#5A2A33}
-.aviso-acoes{display:grid;gap:10px;margin-top:22px}
+.aviso-box{width:100%;max-width:460px;max-height:calc(100% - 8px);overflow-y:auto;background:var(--creme);color:var(--bordo);border-radius:22px;padding:24px 24px 20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.aviso-k{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8A5A3C}
+.aviso-sec{margin-top:16px}
+.aviso-sec + .aviso-sec{border-top:1px solid rgba(59,13,24,.14);padding-top:16px}
+.aviso-sec h2{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:var(--display-weight);letter-spacing:var(--display-track);font-size:24px;line-height:1.12;margin:0 0 8px;text-wrap:balance}
+.aviso-ico{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--bordo);color:var(--creme)}
+.aviso-ico svg{width:18px;height:18px}
+.aviso-sec p{margin:0 0 8px;font-size:15.5px;line-height:1.55;color:#5A2A33}
+.aviso-sec p b{color:var(--bordo)}
+.aviso-acoes{display:grid;gap:8px;margin-top:18px}
 .aviso-acoes .btn{width:100%;justify-content:center;text-align:center}
 .aviso-acoes .btn-primary{background:var(--bordo);color:var(--creme)}
 .aviso-acoes .aviso-sair{appearance:none;background:none;border:0;font:inherit;font-size:15px;font-weight:600;color:#8A5A3C;cursor:pointer;padding:10px;text-decoration:underline;text-underline-offset:3px}
@@ -976,32 +980,47 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
 })();
 </script>
 
-<div class="aviso" id="aviso" role="dialog" aria-modal="true" aria-labelledby="aviso-titulo" aria-describedby="aviso-texto" hidden>
+<div class="aviso" id="aviso" role="dialog" aria-modal="true" aria-labelledby="aviso-k" hidden>
   <div class="aviso-box">
-    <span class="aviso-k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Antes de continuar</span>
-    <h2 id="aviso-titulo"></h2>
-    <p id="aviso-texto"></p>
+    <span class="aviso-k" id="aviso-k">Antes de continuar</span>
+    <section class="aviso-sec" id="aviso-afirmativa" hidden>
+      <h2><span class="aviso-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>Esta é uma vaga afirmativa</h2>
+      <p>As vagas do Fora da Caixa Black são exclusivas para pessoas pretas e pardas.</p>
+      <p><b>A autodeclaração é de sua responsabilidade.</b> Ela poderá ser confirmada em entrevista, e uma declaração falsa leva à eliminação do processo seletivo.</p>
+    </section>
+    <section class="aviso-sec" id="aviso-vaga" hidden>
+      <h2><span class="aviso-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span id="aviso-titulo"></span></h2>
+      <p id="aviso-texto"></p>
+    </section>
     <div class="aviso-acoes">
       <button type="button" class="btn btn-primary" id="aviso-ok">Entendi, quero continuar</button>
-      <button type="button" class="aviso-sair" id="aviso-sair">Não moro em SP, ver outras vagas</button>
+      <button type="button" class="aviso-sair" id="aviso-sair">Não atendo a esses critérios</button>
     </div>
   </div>
 </div>
 <script>
-/* ===== AVISO DA VAGA: aparece uma vez, quando a pessoa começa a se candidatar a uma vaga que tem "aviso" ===== */
+/* ===== AVISO NA CANDIDATURA: aparece uma vez quando a pessoa começa a se candidatar. Sempre mostra a responsabilidade da autodeclaração; se a vaga tiver "aviso", ele vem junto. ===== */
 (function(){
   const modal = document.getElementById("aviso"), sel = document.getElementById("c-vaga");
   if(!modal || !sel || typeof VAGAS === "undefined") return;
   const vistos = new Set();
-  let voltarPara = null;
+  let voltarPara = null, comVaga = false;
   const vagaEscolhida = () => VAGAS.find(v => v.titulo === sel.value);
   function abrir(v){
-    if(!v || !v.aviso || vistos.has(v.titulo) || !modal.hidden) return;
-    vistos.add(v.titulo);
+    if(!modal.hidden) return;
+    const mostrarAfirmativa = !vistos.has("afirmativa");
+    const mostrarVaga = !!(v && v.aviso && !vistos.has(v.titulo));
+    if(!mostrarAfirmativa && !mostrarVaga) return;
+    vistos.add("afirmativa"); if(mostrarVaga) vistos.add(v.titulo);
+    comVaga = mostrarVaga;
     voltarPara = document.activeElement;
-    document.getElementById("aviso-titulo").textContent = v.aviso.titulo;
-    document.getElementById("aviso-texto").textContent = v.aviso.texto;
-    modal.hidden = false;
+    document.getElementById("aviso-afirmativa").hidden = !mostrarAfirmativa;
+    document.getElementById("aviso-vaga").hidden = !mostrarVaga;
+    if(mostrarVaga){
+      document.getElementById("aviso-titulo").textContent = v.aviso.titulo;
+      document.getElementById("aviso-texto").textContent = v.aviso.texto;
+    }
+    modal.hidden = false; modal.querySelector(".aviso-box").scrollTop = 0;
     document.documentElement.style.overflow = "hidden";
     document.getElementById("aviso-ok").focus();
   }
@@ -1014,7 +1033,8 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   document.getElementById("aviso-sair").addEventListener("click", ()=>{
     fechar();
     if(document.body.classList.contains("modo-vaga")){ location.href = "/"; return; }
-    sel.value = ""; document.getElementById("vaga").scrollIntoView({behavior:"smooth", block:"start"});
+    if(comVaga) sel.value = "";
+    document.getElementById("vaga").scrollIntoView({behavior:"smooth", block:"start"});
   });
   modal.addEventListener("click", e=>{ if(e.target === modal) fechar(); });
   document.addEventListener("keydown", e=>{ if(e.key === "Escape" && !modal.hidden) fechar(); });
