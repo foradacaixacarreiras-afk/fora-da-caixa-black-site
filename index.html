@@ -300,8 +300,22 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .aside-list b{display:block}
 .aside-list span{color:var(--creme-mute);font-size:15px}
 
-footer{border-top:1px solid var(--vinho-line);padding-block:32px;color:var(--creme-mute);font-size:13px}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.rodape{border-top:1px solid var(--vinho-line);padding-block:56px 28px;color:var(--creme-mute);font-size:15px;background:linear-gradient(180deg,rgba(59,13,24,0),rgba(59,13,24,.55))}
+.assinatura{font-family:var(--display);font-weight:700;font-size:clamp(30px,5.6vw,52px);line-height:1.05;letter-spacing:-.03em;color:var(--creme);margin:0 0 44px;max-width:18ch;text-wrap:balance}
+.assinatura em{display:block;font-family:var(--accent);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--caramelo)}
+.rod-grid{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:36px}
+.rod-marca .brand{margin-bottom:14px}
+.rod-marca p{margin:0 0 14px;max-width:38ch;line-height:1.55}
+.rod-link{display:inline-flex;align-items:center;gap:8px;color:var(--caramelo);font-weight:600;text-decoration:none}
+.rod-link svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.rod-link:hover svg{transform:translateX(4px)}
+.rod-col h3{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--caramelo);margin:4px 0 14px}
+.rod-col ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rod-col a{color:var(--creme);text-decoration:none;overflow-wrap:anywhere;background:linear-gradient(var(--caramelo),var(--caramelo)) left bottom/0 1px no-repeat;padding-bottom:2px;transition:background-size .3s var(--ease)}
+.rod-col a:hover{background-size:100% 1px}
+.rod-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;margin-top:44px;padding-top:20px;border-top:1px solid var(--vinho-line);font-size:13px}
+@media (max-width:820px){.rod-grid{grid-template-columns:1fr 1fr}.rod-marca{grid-column:1 / -1}}
+@media (max-width:480px){.rod-grid{grid-template-columns:1fr;gap:30px}.assinatura{margin-bottom:34px}}
 
 .vd{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:28px;display:grid;gap:18px;margin-top:20px}
 .vd-top{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -646,12 +660,72 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden></div>
 
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <span>Fora da Caixa · Black</span>
-    <span>Empregabilidade e liderança para pessoas negras</span>
+    <p class="assinatura">Talento negro existe. <em>A gente mostra onde.</em></p>
+    <div class="rod-grid">
+      <div class="rod-marca">
+        <a class="brand" href="/" aria-label="Fora da Caixa Black">
+          <svg class="logo" viewBox="104 124 378 248" role="img" aria-label="fora da caixa">
+            <g fill="none" stroke-width="5">
+              <polyline points="229,137 119,137 119,226" stroke="#F6EADF"/>
+              <polyline points="264,137 379,137 379,226" stroke="#F6EADF" stroke-opacity=".5"/>
+              <polyline points="119,262 119,357 227,357" stroke="#F6EADF" stroke-opacity=".5"/>
+              <polyline points="264,357 379,357 379,262" stroke="#F6EADF"/>
+            </g>
+            <text x="288" y="251" font-family="Montserrat, 'Segoe UI', sans-serif" font-size="22" font-weight="400" letter-spacing="2.3" fill="#F6EADF">fora da caixa</text>
+          </svg>
+          <span class="tag-black">Black</span>
+        </a>
+        <p>O banco de talentos negros do Fora da Caixa. Conectamos profissionais pretos e pardos a empresas que querem construir equipes mais diversas.</p>
+        <a class="rod-link" href="https://foradacaixacarreiras.com.br" target="_blank" rel="noopener">Conheça o Fora da Caixa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <nav class="rod-col" aria-labelledby="rod-nav">
+        <h3 id="rod-nav">Navegue</h3>
+        <ul>
+          <li><a href="/#vaga">Vagas abertas</a></li>
+          <li><a href="/#form-card" data-ir="go-cand">Cadastro de candidato</a></li>
+          <li><a href="/#form-card" data-ir="go-emp">Para empresas</a></li>
+          <li><a href="/#form-card" data-ir="go-prof">Procuro um profissional</a></li>
+          <li><a href="/#form-card" data-ir="go-prest">Divulgar meus serviços</a></li>
+        </ul>
+      </nav>
+      <div class="rod-col">
+        <h3 id="rod-contato">Contato</h3>
+        <ul aria-labelledby="rod-contato">
+          <li><a href="mailto:gestao@foradacaixacarreiras.com.br">gestao@foradacaixacarreiras.com.br</a></li>
+          <li><a href="https://www.instagram.com/foradacaixacarreiras/" target="_blank" rel="noopener">Instagram @foradacaixacarreiras</a></li>
+          <li data-link="linkedinFdc" hidden><a target="_blank" rel="noopener">LinkedIn do Fora da Caixa</a></li>
+          <li data-link="linkedinAri" hidden><a target="_blank" rel="noopener">LinkedIn da fundadora</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rod-base">
+      <span>© 2026 Fora da Caixa Carreiras</span>
+      <span>Feito com propósito em São Paulo</span>
+    </div>
   </div>
 </footer>
+<script>
+/* ===== RODAPÉ: links do LinkedIn (preencha o endereço para o link aparecer) ===== */
+(function(){
+  const LINKS = {
+    linkedinFdc: "",   // ex.: https://www.linkedin.com/company/fora-da-caixa-carreiras
+    linkedinAri: ""    // ex.: https://www.linkedin.com/in/seu-perfil
+  };
+  document.querySelectorAll("[data-link]").forEach(li=>{
+    const url = LINKS[li.dataset.link];
+    if(url){ li.querySelector("a").href = url; li.hidden = false; }
+  });
+  // na página principal, os atalhos do rodapé já abrem o formulário certo
+  if(!document.body.classList.contains("modo-vaga")){
+    document.querySelectorAll(".rodape [data-ir]").forEach(a=>a.addEventListener("click", e=>{
+      const alvo = document.getElementById(a.dataset.ir);
+      if(alvo){ e.preventDefault(); alvo.click(); document.getElementById("form-card").scrollIntoView({behavior:"smooth", block:"start"}); }
+    }));
+  }
+})();
+</script>
 
 <script>
 /* ===== VAGAS: a primeira da lista é a vaga em destaque (a publicada por último). Vaga nova entra no topo. ===== */
