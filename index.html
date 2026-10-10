@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#240810">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Caveat:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap">
 <style>
 /* Layout: uma coluna editorial, hero com manchete grande, vaga em destaque e formulário em etapas num cartão. Visual único e escuro em bordô (escolha deliberada da marca). */
 :root{
@@ -26,13 +26,12 @@
   --creme:#F6EADF;
   --creme-mute:#CFB5A8;
   --erro:#FF9C8A;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --body:"Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --accent:"Caveat", "Comic Sans MS", cursive;
-  --accent-style:normal;
-  --accent-size:1.15em;
-  --display-weight:300;
-  --display-track:-.035em;
+  --display:"Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --body:"Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --accent:"Playfair Display", Georgia, "Times New Roman", serif;
+  --display-weight:500;
+  --display-track:-.03em;
+  --ease:cubic-bezier(.2,.75,.2,1);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -62,21 +61,59 @@ a{color:var(--caramelo)}
   background:radial-gradient(closest-side,rgba(138,90,60,.38),transparent 70%);pointer-events:none
 }
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--caramelo);margin:0 0 18px}
+/* textura e luz */
+.grao{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.topband,main,footer{position:relative;z-index:1}
+.brilho{position:absolute;width:520px;height:520px;max-width:140vw;max-height:140vw;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle closest-side, rgba(217,168,119,.2), rgba(217,168,119,0));
+  left:var(--gx,62%);top:var(--gy,32%);transform:translate(-50%,-50%);transition:left .9s var(--ease),top .9s var(--ease);
+  animation:deriva 14s ease-in-out infinite alternate}
+@keyframes deriva{from{margin-left:-40px;margin-top:-20px}to{margin-left:40px;margin-top:30px}}
+.hero > *{position:relative;z-index:1}
+.hero > .brilho{position:absolute;z-index:0}
+/* título com os colchetes do logo */
+.titulo{position:relative;display:inline-block;padding:18px 26px 22px 22px;margin-left:-22px;max-width:calc(100% + 22px)}
+.colchete{position:absolute;width:44px;height:44px;border:2px solid var(--caramelo);opacity:.75;transition:transform 1s var(--ease) .15s}
+.colchete.a{left:0;top:0;border-right:0;border-bottom:0}
+.colchete.b{right:0;bottom:0;border-left:0;border-top:0}
+.fechado .colchete.a{transform:translate(42%,38%)}
+.fechado .colchete.b{transform:translate(-42%,-38%)}
 .hero h1{
-  font-family:var(--display);font-weight:var(--display-weight);margin:0;
-  font-size:clamp(44px,8.4vw,104px);line-height:.98;letter-spacing:var(--display-track);text-wrap:balance;max-width:13ch
+  font-family:var(--display);font-weight:800;margin:0;
+  font-size:clamp(46px,8.4vw,96px);line-height:.98;letter-spacing:-.035em;text-wrap:balance
 }
-.hero h1 em{display:block;margin-top:.12em;font-family:var(--accent);font-style:var(--accent-style);font-size:.8em;line-height:1.02;font-weight:500;letter-spacing:0;color:var(--caramelo);max-width:15ch}
+.hero h1 .sc{display:block;font-family:var(--accent);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--caramelo);font-size:.92em;margin-bottom:-.05em;transition:clip-path 1s var(--ease) .1s}
+.hero h1 .bd{display:block;color:var(--creme)}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w > span{display:inline-block;transition:transform .8s var(--ease)}
+.hero h1 .u{position:relative;display:inline-block;white-space:nowrap}
+.hero h1 .u svg{position:absolute;left:-3%;bottom:-.24em;width:106%;height:.3em;overflow:visible}
+.hero h1 .u path{fill:none;stroke:var(--caramelo);stroke-width:3.5;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:2000;stroke-dashoffset:0;transition:stroke-dashoffset 1.1s var(--ease) 1.25s}
+.hero p.sub{margin:16px 0 0;font-family:var(--accent);font-style:italic;font-size:clamp(22px,3.4vw,34px);line-height:1.15;color:var(--creme-mute);max-width:20ch}
+/* animação de entrada (só com JS, e só no primeiro quadro) */
+.anima .hero h1 .sc{clip-path:inset(0 100% 0 0)}
+.anima .hero h1 .w > span{transform:translateY(105%)}
+.anima .hero h1 .u path{stroke-dashoffset:2000}
+.anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:0;transform:translateY(14px)}
+.hero .sub,.hero .apoio{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.hero .sub{transition-delay:.9s}.hero .apoio{transition-delay:1.05s}
 .section-title,.vaga h3,.step-title,.done h3,.areas-row{font-weight:var(--display-weight) !important;letter-spacing:var(--display-track)}
-.hero p.apoio{margin:28px 0 0;max-width:46ch;font-size:clamp(18px,2.2vw,22px);font-weight:500;line-height:1.4;color:var(--creme)}
+.hero p.apoio{margin:24px 0 0;max-width:46ch;font-size:clamp(17px,2.1vw,20px);font-weight:400;line-height:1.5;color:var(--creme)}
 .hero p.apoio + p.lead{margin-top:12px}
 .hero p.lead{max-width:56ch;font-size:clamp(17px,2vw,19px);color:var(--creme-mute);margin:28px 0 34px}
 .paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin-top:32px}
-.path{position:relative;display:grid;gap:4px;text-decoration:none;border-radius:20px;padding:20px 52px 20px 22px;transition:transform .15s ease, box-shadow .15s ease}
-.path:hover{transform:translateY(-2px)}
-.path-k{font-size:19px;font-weight:800;letter-spacing:-.01em}
-.path-t{font-size:14px;font-weight:500;line-height:1.35}
-.path svg{position:absolute;right:20px;top:50%;width:20px;height:20px;transform:translateY(-50%)}
+.path{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:3px;align-items:center;text-decoration:none;border-radius:18px;padding:18px 52px 18px 16px;overflow:hidden;transition:opacity .7s var(--ease),transform .25s var(--ease),box-shadow .25s}
+.path:active{transform:scale(.98)}
+.path .ic{grid-row:span 2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(217,168,119,.14);color:var(--caramelo)}
+.path-cand .ic{background:var(--bordo-deep)}
+.path .ic svg{position:static;width:21px;height:21px;transform:none}
+.path:hover > svg,.path:focus-visible > svg{transform:translate(5px,-50%)}
+.path-cand::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);pointer-events:none;animation:passa 4.5s ease-in-out 2.6s infinite}
+@keyframes passa{0%{transform:translateX(-120%)}22%,100%{transform:translateX(120%)}}
+.path-k{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.path-t{font-size:14px;font-weight:400;line-height:1.35}
+.path > svg{position:absolute;right:20px;top:50%;width:20px;height:20px;transform:translateY(-50%);transition:transform .3s var(--ease)}
 .path-cand{background:var(--creme);color:var(--bordo)}
 .path-cand .path-t{color:#7A5446}
 .path-emp{background:transparent;color:var(--creme);box-shadow:inset 0 0 0 1.5px var(--vinho-line)}
@@ -326,13 +363,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   #banco-lista li{flex-wrap:wrap}
   #banco-lista a{padding:8px 14px}
   #vaga{padding-bottom:32px !important}
-  .path{padding:18px 52px 18px 20px}
+  .path{padding:16px 48px 16px 14px}
+  .titulo{padding:14px 18px 18px 16px;margin-left:-16px}
+  .colchete{width:32px;height:32px}
   .meta{margin-top:28px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}
+  .anima .hero h1 .sc{clip-path:none}.anima .hero h1 .w > span{transform:none}.anima .hero h1 .u path{stroke-dashoffset:0}
+  .anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div class="grao" aria-hidden="true"></div>
 
 
 <div class="topband">
@@ -357,26 +399,36 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
 <main id="inicio">
   <div class="wrap hero">
+    <div class="brilho" id="brilho" aria-hidden="true"></div>
     <p class="eyebrow">Banco de Talentos Negros</p>
-    <h1>Ei, você, pessoa negra! <em>Seu talento merece ser encontrado.</em></h1>
+    <div class="titulo" id="titulo">
+      <span class="colchete a" aria-hidden="true"></span>
+      <span class="colchete b" aria-hidden="true"></span>
+      <h1 aria-label="Ei, você, pessoa negra!"><span class="sc" aria-hidden="true">Ei, você,</span><span class="bd" aria-hidden="true"><span class="w"><span>pessoa</span></span> <span class="u"><span class="w"><span>negra!</span></span><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 40 4, 90 3, 130 7 C 160 10, 182 13, 198 6"/></svg></span></span></h1>
+    </div>
+    <p class="sub">Seu talento merece ser encontrado.</p>
     <p class="apoio">Conectamos profissionais pretos e pardos a empresas que buscam talentos e querem construir equipes mais diversas.</p>
     <div class="paths" role="group" aria-label="Escolha seu caminho">
       <a class="path path-cand" href="#vaga" id="go-cand">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
         <span class="path-k">Sou candidato</span>
         <span class="path-t">Ver vagas e fazer meu cadastro</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="path path-emp" href="#form-card" id="go-emp">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span>
         <span class="path-k">Sou empresa</span>
         <span class="path-t">Quero contratar talentos negros</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="path path-emp" href="#form-card" id="go-prof">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
         <span class="path-k">Procuro um profissional</span>
         <span class="path-t">Encontre profissionais negros</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="path path-emp" href="#form-card" id="go-prest" data-modo="prest">
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.3L21 9l-5 4.4L17.5 20 12 16.7 6.5 20 8 13.4 3 9l6.4-.7z"/></svg></span>
         <span class="path-k">Sou profissional</span>
         <span class="path-t">Quero divulgar meus serviços</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1048,6 +1100,29 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   sel.addEventListener("change", ()=>abrir(vagaEscolhida()));
   // 3. quem começa a preencher o formulário direto
   document.getElementById("flow-cand").addEventListener("focusin", e=>{ if(e.target !== sel) abrir(vagaEscolhida()); });
+})();
+</script>
+<script>
+/* ===== ANIMAÇÃO DO TOPO: colchetes abrindo, título se escrevendo, sublinhado e cartões ===== */
+(function(){
+  const hero = document.querySelector(".hero"), titulo = document.getElementById("titulo");
+  if(!hero || !titulo || document.body.classList.contains("modo-vaga")) return;
+  const reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduz){
+    document.body.classList.add("anima"); titulo.classList.add("fechado");
+    hero.querySelectorAll("h1 .w > span").forEach((s,i)=> s.style.transitionDelay = (0.35 + i*0.12) + "s");
+    hero.querySelectorAll(".path").forEach((p,i)=> p.style.transitionDelay = (1.2 + i*0.1) + "s");
+    void document.body.offsetWidth;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ document.body.classList.remove("anima"); titulo.classList.remove("fechado"); }));
+    // depois da entrada, o atraso dos cartões volta a zero (o toque responde na hora)
+    setTimeout(()=>hero.querySelectorAll(".path").forEach(p=>p.style.transitionDelay=""), 2600);
+  }
+  const brilho = document.getElementById("brilho");
+  hero.addEventListener("pointermove", e=>{
+    const r = hero.getBoundingClientRect();
+    brilho.style.setProperty("--gx", ((e.clientX - r.left)/r.width*100) + "%");
+    brilho.style.setProperty("--gy", ((e.clientY - r.top)/r.height*100) + "%");
+  });
 })();
 </script>
 </body>
