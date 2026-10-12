@@ -1039,9 +1039,21 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     btn.disabled = true; btn.textContent = "Enviando...";
     try{
       const file = await lerArquivo(arquivo);
-      const resp = await fetch(ENDPOINT, { method: "POST", body: JSON.stringify({ tipo, dados, arquivo: file }) });
-      const res = await resp.json();
-      if(!res || !res.ok) throw new Error(res && res.erro ? res.erro : "erro no envio");
+      const corpo = JSON.stringify({ tipo, dados, arquivo: file });
+      let res = null, ultimoErro = null;
+      // tenta de novo uma vez, sozinho, se o servidor estiver ocupado
+      for(let tentativa = 0; tentativa < 2; tentativa++){
+        try{
+          const resp = await fetch(ENDPOINT, { method: "POST", body: corpo });
+          res = await resp.json();
+          if(res && res.ok) break;
+          ultimoErro = new Error(res && res.erro ? res.erro : "erro no envio");
+          if(res && res.erro && !/bloqueio|lock|tempo|timeout|ocupad/i.test(res.erro)) break;
+        }catch(e){ ultimoErro = e; }
+        res = null;
+        if(tentativa === 0){ btn.textContent = "Ainda enviando..."; await new Promise(r=>setTimeout(r, 3000)); }
+      }
+      if(!res || !res.ok) throw (ultimoErro || new Error("erro no envio"));
       ultimoTipo = tipo; ultimaVaga = (dados && dados["Vaga de interesse"]) || "";
       btn.disabled=false; btn.textContent=label; finish(titulo, texto);
     }catch(err){
