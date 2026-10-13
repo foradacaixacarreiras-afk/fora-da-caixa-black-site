@@ -581,6 +581,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
                   </label>
                   <span class="err" id="cv-err"></span>
                 </div>
+                <div class="origem" data-origem="c">
+                <label class="f">Como você conheceu o Fora da Caixa Black?
+                  <select id="c-origem" required>
+                    <option value="">Selecione</option><option>Instagram</option><option>LinkedIn</option><option>WhatsApp</option><option>Indicação de alguém</option><option>Outro</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f" id="c-origem-outro-l" hidden><span id="c-origem-outro-t">Conte onde</span><input type="text" id="c-origem-outro" maxlength="120"><span class="err"></span></label>
+              </div>
                 <label class="check"><input type="checkbox" id="c-lgpd" required> Autorizo o Fora da Caixa a guardar meus dados, inclusive a autodeclaração racial, e a compartilhar meu perfil com empresas parceiras para processos seletivos.</label>
                 <span class="err" id="lgpd-err"></span>
               </div>
@@ -600,6 +608,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
                 <label class="f">WhatsApp<input type="tel" id="e-whats" autocomplete="tel" placeholder="(11) 90000-0000" required><span class="err"></span></label>
               </div>
               <label class="f"><span id="e-cargo-l">Cargo que busca</span><input type="text" id="e-cargo" placeholder="Ex.: Analista Financeiro Pleno" required><span class="err"></span></label>
+              <div class="origem" data-origem="e">
+                <label class="f">Como você conheceu o Fora da Caixa Black?
+                  <select id="e-origem" required>
+                    <option value="">Selecione</option><option>Instagram</option><option>LinkedIn</option><option>WhatsApp</option><option>Indicação de alguém</option><option>Outro</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f" id="e-origem-outro-l" hidden><span id="e-origem-outro-t">Conte onde</span><input type="text" id="e-origem-outro" maxlength="120"><span class="err"></span></label>
+              </div>
             </div>
           </div>
 
@@ -643,6 +659,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
                 </div>
                 <span class="err" id="pc-err"></span>
               </fieldset>
+              <div class="origem" data-origem="p">
+                <label class="f">Como você conheceu o Fora da Caixa Black?
+                  <select id="p-origem" required>
+                    <option value="">Selecione</option><option>Instagram</option><option>LinkedIn</option><option>WhatsApp</option><option>Indicação de alguém</option><option>Outro</option>
+                  </select><span class="err"></span>
+                </label>
+                <label class="f" id="p-origem-outro-l" hidden><span id="p-origem-outro-t">Conte onde</span><input type="text" id="p-origem-outro" maxlength="120"><span class="err"></span></label>
+              </div>
               <label class="check"><input type="checkbox" id="p-lgpd"> Autorizo o Fora da Caixa a guardar meus dados para esta finalidade, conforme a LGPD.</label>
               <label class="check"><input type="checkbox" id="p-divulga"> Autorizo a divulgação pública do meu nome profissional, área, descrição dos serviços, localização e dos contatos que marquei acima.</label>
               <span class="err" id="p-lgpd-err"></span>
@@ -1030,6 +1054,19 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   $("#back").addEventListener("click", ()=>{ if(step>1){ step--; render(); } });
 
   const val = id => document.getElementById(id).value.trim();
+  // "Como você conheceu": Indicação pede quem indicou (opcional); Outro pede onde (obrigatório)
+  const origem = p => { const o = val(p+"-origem"), t = val(p+"-origem-outro"); return t && (o === "Outro" || o === "Indicação de alguém") ? o + ": " + t : o; };
+  ["c","e","p"].forEach(p=>{
+    const sel = document.getElementById(p+"-origem"), lab = document.getElementById(p+"-origem-outro-l"), inp = document.getElementById(p+"-origem-outro"), txt = document.getElementById(p+"-origem-outro-t");
+    if(!sel) return;
+    sel.addEventListener("change", ()=>{
+      const outro = sel.value === "Outro", ind = sel.value === "Indicação de alguém";
+      lab.hidden = !(outro || ind); inp.required = outro;
+      txt.innerHTML = outro ? "Conte onde" : 'Quem indicou? <span class="opt">(opcional)</span>';
+      inp.placeholder = outro ? "Ex.: grupo de RH, evento, Google" : "Nome de quem indicou";
+      if(!outro && !ind) inp.value = "";
+    });
+  });
   const ENDPOINT = "https://script.google.com/macros/s/AKfycbxOP89i_4C3uYkY1qekf2P_6PPZVrpMd1ZZrGE980ZaYrsDKFtT7zpgkrB6pxHdhy2-/exec";
   $("#preview-note").hidden = true;
 
@@ -1079,7 +1116,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
       if(!checkFields($("#flow-emp"))) return;
       enviar("Empresa", {
         "Empresa": val("e-empresa") || (busca ? "Pessoa física" : ""), "Contato": val("e-contato"), "E-mail": val("e-email"),
-        "WhatsApp": val("e-whats"), "Cargo que busca": busca ? "Procura profissional: " + val("e-cargo") : val("e-cargo")
+        "WhatsApp": val("e-whats"), "Cargo que busca": busca ? "Procura profissional: " + val("e-cargo") : val("e-cargo"), "Como conheceu": origem("e")
       }, null, "Contato recebido!", "Obrigada pelo interesse em contratar com intenção. Vamos falar com você em breve para entender a vaga.");
       return;
     }
@@ -1098,7 +1135,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
         "Nome": val("p-nome"), "Negócio": val("p-negocio"), "Área de atuação": val("p-area"), "Especialidades": val("p-espec"),
         "Serviço": val("p-servico"), "Cidade": val("p-cidade"), "Atendimento": val("p-atendimento"),
         "Portfólio": val("p-portfolio"), "WhatsApp": val("p-whats"), "E-mail": val("p-email"),
-        "Contatos públicos": publicos.join(", "), "Aceite LGPD": "Sim", "Autoriza divulgação": "Sim"
+        "Contatos públicos": publicos.join(", "), "Aceite LGPD": "Sim", "Autoriza divulgação": "Sim", "Como conheceu": origem("p")
       }, null, "Cadastro recebido!", "");
       return;
     }
@@ -1118,7 +1155,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
         "Autodeclaração": val("c-raca"), "Ciência vaga afirmativa": "Sim",
         "Área de atuação": val("c-area"), "Formação": val("c-formacao"), "Nível": val("c-nivel"),
         "Pretensão salarial": val("c-pretensao"), "LinkedIn": val("c-linkedin"),
-        "Vaga de interesse": val("c-vaga") || "Banco de talentos", "Aceite LGPD": "Sim"
+        "Vaga de interesse": val("c-vaga") || "Banco de talentos", "Aceite LGPD": "Sim", "Como conheceu": origem("c")
       }, cv.files[0], "Cadastro recebido!", "Obrigada por fazer parte. Quando surgir uma oportunidade com o seu perfil, a gente entra em contato.");
       return;
     }
