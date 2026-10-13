@@ -1048,7 +1048,9 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     btn.disabled = true; btn.textContent = "Enviando...";
     try{
       const file = await lerArquivo(arquivo);
-      const corpo = JSON.stringify({ tipo, dados, arquivo: file });
+      // cada envio leva um código: se a resposta não chegar e a pessoa tentar de novo, o cadastro não se repete
+      const idEnvio = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+      const corpo = JSON.stringify({ tipo, dados, arquivo: file, idEnvio });
       let res = null, ultimoErro = null;
       // tenta de novo uma vez, sozinho, se o servidor estiver ocupado
       for(let tentativa = 0; tentativa < 2; tentativa++){
@@ -1067,7 +1069,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
       btn.disabled=false; btn.textContent=label; finish(titulo, texto);
     }catch(err){
       btn.disabled=false; btn.textContent=label;
-      $("#send-err").textContent = "Não conseguimos enviar agora. Confira sua conexão e tente de novo. (" + (err && err.message ? err.message : "erro") + ")";
+      $("#send-err").textContent = "Não conseguimos confirmar o envio. Confira sua conexão e toque em enviar de novo: se o seu cadastro já tiver chegado, ele não será duplicado. (" + (err && err.message ? err.message : "erro") + ")";
     }
   }
 
