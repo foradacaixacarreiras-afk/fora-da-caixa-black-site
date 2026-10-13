@@ -744,11 +744,9 @@ const VAGAS = [
     slug: "assistente-juridico",   // link direto: black.foradacaixacarreiras.com.br/vagas/assistente-juridico
     titulo: "Assistente Jurídico(a)",
     chamada: "Escritório de Direito Digital e Contratos no Tatuapé (SP). Para pessoa no último ano de Direito ou recém-formada. Modelo híbrido.",
-    // aviso que aparece quando a pessoa começa a se candidatar
-    aviso: {
-      titulo: "Esta vaga é em São Paulo",
-      texto: "O trabalho é híbrido, com até 2 dias por semana presenciais no escritório, no Tatuapé (Zona Leste de São Paulo). Siga com a candidatura se você mora em São Paulo ou região e consegue ir ao escritório nesses dias."
-    },
+    // pausada: true → não recebe novas candidaturas; quem clica vê o aviso e é convidado ao banco de talentos.
+    // Para reabrir, apague a linha abaixo.
+    pausada: true,
     tipo: "Direito",
     onde: "Escritório de Direito Digital e Contratos · Tatuapé, SP",
     paraQuem: "Pessoa no último ano de Direito ou recém-formada",
@@ -810,7 +808,8 @@ const VAGAS = [
   const destaques = VAGAS.filter(x=>x.destaque), outras = VAGAS.filter(x=>!x.destaque);
   const titulo = document.getElementById("vaga-titulo");
   if(titulo) titulo.textContent = destaques.length > 1 ? "Vagas abertas" : "Vaga em destaque";
-  const rotulo = v => v === destaques[0] ? "Em destaque" : "Vaga aberta";
+  const rotulo = v => v.pausada ? "Inscrições pausadas" : (v === destaques.find(x=>!x.pausada) ? "Em destaque" : "Vaga aberta");
+  const pausa = ()=>{ if(window.abrirPausa) window.abrirPausa(); };
   const box = document.getElementById("vaga-destaque");
   const sheet = document.getElementById("sheet");
   let ultimoBotao = null;
@@ -837,7 +836,7 @@ const VAGAS = [
     back.addEventListener("click", fechar);
     top.append(back, el("span","tag-black","Black"));
     inn.append(top);
-    const pills = el("div","pills"); pills.append(el("span", v === destaques[0] ? "pill" : "pill out", rotulo(v))); if(v.tipo) pills.append(el("span","pill out",v.tipo)); inn.append(pills);
+    const pills = el("div","pills"); pills.append(el("span", rotulo(v) === "Em destaque" ? "pill" : "pill out", rotulo(v))); if(v.tipo) pills.append(el("span","pill out",v.tipo)); inn.append(pills);
     const h = el("h2",null,v.titulo); h.id = "sheet-title"; inn.append(h);
     if(d.intro) inn.append(el("p","intro",d.intro));
     if(d.fatos){ const f = el("div","sheet-facts"); d.fatos.forEach(([k,val])=>{ const x=el("div"); x.append(el("span",null,k), el("b",null,val)); f.append(x); }); inn.append(f); }
@@ -849,7 +848,8 @@ const VAGAS = [
     });
     const cta = el("div","sheet-cta");
     const b = el("button","btn btn-primary","Quero concorrer"); b.type = "button";
-    b.addEventListener("click", ()=>{ fechar(); irParaCadastro(v.titulo); });
+    if(v.pausada) b.dataset.pausada = "1";
+    b.addEventListener("click", ()=>{ fechar(); if(v.pausada) pausa(); else irParaCadastro(v.titulo); });
     cta.append(b); inn.append(cta);
     sheet.append(inn);
     sheet.hidden = false; sheet.scrollTop = 0;
@@ -865,7 +865,7 @@ const VAGAS = [
     const v = vagaAtual, d = v.detalhes || {};
     document.body.classList.add("modo-vaga");
     const vp = el("section","vp"); vp.setAttribute("aria-labelledby","vp-title");
-    const pills = el("div","pills"); pills.append(el("span","pill","Vaga aberta")); if(v.tipo) pills.append(el("span","pill out",v.tipo)); vp.append(pills);
+    const pills = el("div","pills"); pills.append(el("span","pill",v.pausada ? "Inscrições pausadas" : "Vaga aberta")); if(v.tipo) pills.append(el("span","pill out",v.tipo)); vp.append(pills);
     const h = el("h1",null,v.titulo); h.id = "vp-title"; vp.append(h);
     if(v.onde && !d.intro) vp.append(el("p","where",v.onde));
     if(d.intro) vp.append(el("p","intro",d.intro));
@@ -879,19 +879,25 @@ const VAGAS = [
       vp.append(sec);
     });
     const cta = el("div","sheet-cta"); const b = el("a","btn btn-primary","Quero me candidatar"); b.href = "#form-card"; cta.append(b); vp.append(cta);
+    if(v.pausada){ b.dataset.pausada = "1"; b.addEventListener("click", e=>{ e.preventDefault(); pausa(); }); }
     document.getElementById("inicio").prepend(vp);
     // formulário só de candidatura, com a vaga já escolhida
     const sec = document.getElementById("cadastro");
-    sec.querySelector(".section-title").textContent = "Candidate\u2011se a esta vaga";
+    sec.querySelector(".section-title").textContent = v.pausada ? "Cadastre\u2011se no banco de talentos" : "Candidate\u2011se a esta vaga";
     const todas = el("a","vp-todas","Ver todas as vagas do Fora da Caixa Black"); todas.href = "/";
     sec.querySelector(".section-sub").after(todas);
     document.querySelector(".brand").href = "/";
-    const topo = document.querySelector(".top-cta"); if(topo){ topo.querySelector(".long").textContent = "Quero me candidatar"; topo.querySelector(".short").textContent = "Candidatar"; }
+    const topo = document.querySelector(".top-cta");
+    if(topo && v.pausada){ topo.querySelector(".long").textContent = "Entrar no banco de talentos"; topo.querySelector(".short").textContent = "Cadastrar"; }
+    else if(topo){ topo.querySelector(".long").textContent = "Quero me candidatar"; topo.querySelector(".short").textContent = "Candidatar"; }
+    // quem chega pelo link de uma vaga pausada já vê o aviso
+    if(v.pausada) window.addEventListener("load", ()=>setTimeout(pausa, 600));
   }
 
-  destaques.forEach(v=>{
+  // vagas pausadas aparecem depois das abertas
+  [...destaques].sort((a,b)=>(a.pausada?1:0)-(b.pausada?1:0)).forEach(v=>{
     const card = el("div","vd");
-    const top = el("div","vd-top"); top.append(el("span", v === destaques[0] ? "pill" : "pill out", rotulo(v))); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
+    const top = el("div","vd-top"); top.append(el("span", rotulo(v) === "Em destaque" ? "pill" : "pill out", rotulo(v))); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
     card.append(el("h3",null,v.titulo));
     if(v.onde) card.append(el("p","where",v.onde));
     const facts = el("div","vd-facts");
@@ -899,7 +905,10 @@ const VAGAS = [
     if(facts.children.length) card.append(facts);
     if(v.atividades){ const ul=el("ul"); v.atividades.forEach(a=>ul.append(el("li",null,a))); card.append(ul); }
     const acoes = el("div","vd-acoes");
-    const cta = el("a","btn btn-primary","Quero concorrer"); cta.href="#form-card"; cta.dataset.vaga=v.titulo; acoes.append(cta);
+    const cta = el("a","btn btn-primary","Quero concorrer"); cta.href="#form-card";
+    if(v.pausada){ cta.dataset.pausada = "1"; cta.addEventListener("click", e=>{ e.preventDefault(); pausa(); }); }
+    else cta.dataset.vaga=v.titulo;
+    acoes.append(cta);
     if(v.detalhes){ const s = el("button","saiba","Saiba mais sobre a vaga"); s.type="button"; s.addEventListener("click", ()=>abrir(v, s)); acoes.append(s); }
     card.append(acoes);
     box.append(card);
@@ -913,9 +922,9 @@ const VAGAS = [
   });
   if(!outras.length) document.querySelector(".banco").hidden = true;
   const sel = document.getElementById("c-vaga");
-  destaques.concat(outras).forEach(x=>{ sel.append(el("option",null,x.titulo)); });
+  destaques.concat(outras).filter(x=>!x.pausada).forEach(x=>{ sel.append(el("option",null,x.titulo)); });
   sel.append(el("option",null,"Banco de talentos (sem vaga específica)"));
-  if(vagaAtual){ sel.value = vagaAtual.titulo; sel.closest("label").hidden = true; }
+  if(vagaAtual){ sel.value = vagaAtual.pausada ? "Banco de talentos (sem vaga específica)" : vagaAtual.titulo; sel.closest("label").hidden = true; }
 })();
 </script>
 <script>
@@ -1186,6 +1195,48 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     </div>
   </div>
 </div>
+<div class="aviso" id="pausa" role="dialog" aria-modal="true" aria-labelledby="pausa-titulo" hidden>
+  <div class="aviso-box">
+    <span class="aviso-k">Atualização da vaga</span>
+    <section class="aviso-sec">
+      <h2><span class="aviso-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5v14M14 5v14"/></svg></span><span id="pausa-titulo">Inscrições pausadas</span></h2>
+      <p>Recebemos muitas candidaturas para esta vaga, e ficamos muito felizes com isso! Agora estamos analisando cada perfil com o cuidado que ele merece, por isso pausamos novas inscrições.</p>
+      <p><b>Mas não deixe de se cadastrar no nosso banco de talentos.</b> Assim que surgirem vagas que combinem com o seu perfil, entraremos em contato com você.</p>
+    </section>
+    <div class="aviso-acoes">
+      <button type="button" class="btn btn-primary" id="pausa-banco">Quero entrar no banco de talentos</button>
+      <button type="button" class="aviso-sair" id="pausa-vagas">Ver outras vagas</button>
+    </div>
+  </div>
+</div>
+<script>
+/* ===== VAGA PAUSADA: aviso acolhedor e convite ao banco de talentos ===== */
+(function(){
+  const modal = document.getElementById("pausa"), sel = document.getElementById("c-vaga");
+  const BANCO = "Banco de talentos (sem vaga específica)";
+  let voltarPara = null;
+  function fechar(){ modal.hidden = true; document.documentElement.style.overflow = ""; if(voltarPara && voltarPara.focus) voltarPara.focus(); }
+  window.abrirPausa = function(){
+    voltarPara = document.activeElement;
+    modal.hidden = false; modal.querySelector(".aviso-box").scrollTop = 0;
+    document.documentElement.style.overflow = "hidden";
+    document.getElementById("pausa-banco").focus();
+  };
+  document.getElementById("pausa-banco").addEventListener("click", ()=>{
+    fechar();
+    const c = document.getElementById("opt-cand"); if(c) c.click();
+    if(sel) sel.value = BANCO;
+    document.getElementById("form-card").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  document.getElementById("pausa-vagas").addEventListener("click", ()=>{
+    fechar();
+    if(document.body.classList.contains("modo-vaga")){ location.href = "/#vaga"; return; }
+    document.getElementById("vaga").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+  modal.addEventListener("click", e=>{ if(e.target === modal) fechar(); });
+  document.addEventListener("keydown", e=>{ if(e.key === "Escape" && !modal.hidden) fechar(); });
+})();
+</script>
 <script>
 /* ===== AVISO NA CANDIDATURA: aparece uma vez quando a pessoa começa a se candidatar. Sempre mostra a responsabilidade da autodeclaração; se a vaga tiver "aviso", ele vem junto. ===== */
 (function(){
@@ -1228,7 +1279,7 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   document.addEventListener("keydown", e=>{ if(e.key === "Escape" && !modal.hidden) fechar(); });
   // 1. botões "Quero concorrer" / "Quero me candidatar"
   document.addEventListener("click", e=>{
-    const a = e.target.closest("a, button"); if(!a || modal.contains(a)) return;
+    const a = e.target.closest("a, button"); if(!a || modal.contains(a) || a.dataset.pausada || a.closest("#pausa")) return;
     const txt = a.textContent || "";
     if(/Quero concorrer|Quero me candidatar|Candidatar/.test(txt)) setTimeout(()=>abrir(vagaEscolhida()), 450);
   });
