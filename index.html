@@ -293,6 +293,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .done h3{font-family:var(--display);font-weight:400;font-size:32px;color:var(--bordo);margin:0 0 10px}
 .done p{color:#5C3A30;margin:0 auto 10px;max-width:40ch}
 .done .note{font-size:12px;color:#8C6A5D;margin-top:18px}
+.pos{margin:6px auto 4px;max-width:400px;text-align:left}
+.pos-txt{text-align:center}
+.passos{list-style:none;margin:16px 0 18px;padding:0;display:grid;gap:10px}
+.passos li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;font-size:15px;color:#5C3A30}
+.passos li b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#EFE0D3;color:var(--bordo);font-size:14px;font-weight:800}
+.passos li.ok b{background:var(--bordo);color:var(--creme)}
+.pos-acoes{display:grid;gap:10px}
+.pos-acoes .btn{width:100%;justify-content:center;box-sizing:border-box}
+.pos-insta{background:var(--bordo) !important;color:var(--creme) !important}
+.pos-indica{background:transparent;color:var(--bordo);box-shadow:inset 0 0 0 1.5px #D9C4B6}
+.pos-indica:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
+.pos-acoes svg{width:18px;height:18px;flex:none}
+.pos-dica{font-size:13px !important;color:#8C6A5D !important;text-align:center;margin:2px auto 0 !important}
 .aval{margin:22px auto 8px;padding:20px 16px 18px;max-width:380px;border-radius:18px;background:#EFE0D3}
 .aval-q{margin:0 0 10px !important;font-weight:600;color:var(--bordo) !important;font-size:15.5px}
 .estrelas{display:flex;justify-content:center;gap:6px}
@@ -685,6 +698,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
         <div class="done" id="done" hidden>
           <div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F6EADF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
           <h3 id="done-title">Obrigado pelo seu cadastro!</h3>
+          <div class="pos" id="pos" hidden>
+            <p class="pos-txt" id="pos-txt">Seu perfil já está no banco de talentos do Fora da Caixa Black.</p>
+            <ol class="passos" aria-label="Próximos passos">
+              <li class="ok"><b>&#10003;</b><span>Cadastro recebido</span></li>
+              <li><b>2</b><span>Analisamos o seu perfil com cuidado</span></li>
+              <li><b>3</b><span>Quando surgir uma vaga que combine com você, entramos em contato pelo e-mail ou WhatsApp</span></li>
+            </ol>
+            <div class="pos-acoes">
+              <a class="btn pos-insta" href="https://www.instagram.com/foradacaixacarreiras/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Siga o Fora da Caixa no Instagram</a>
+              <p class="pos-dica">As vagas novas aparecem primeiro por lá.</p>
+              <a class="btn pos-indica" id="pos-indica" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Indicar para alguém pelo WhatsApp</a>
+            </div>
+          </div>
           <div class="aval" id="aval">
             <p class="aval-q" id="aval-q">Como foi sua experiência ao preencher o cadastro?</p>
             <div class="estrelas" id="estrelas" role="radiogroup" aria-labelledby="aval-q"><button type="button" role="radio" aria-checked="false" data-nota="1" aria-label="1 estrela"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.86 6.42.73-4.77 4.36 1.3 6.33L12 16.9l-5.7 3.18 1.3-6.33-4.77-4.36 6.42-.73z"/></svg></button><button type="button" role="radio" aria-checked="false" data-nota="2" aria-label="2 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.86 6.42.73-4.77 4.36 1.3 6.33L12 16.9l-5.7 3.18 1.3-6.33-4.77-4.36 6.42-.73z"/></svg></button><button type="button" role="radio" aria-checked="false" data-nota="3" aria-label="3 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.86 6.42.73-4.77 4.36 1.3 6.33L12 16.9l-5.7 3.18 1.3-6.33-4.77-4.36 6.42-.73z"/></svg></button><button type="button" role="radio" aria-checked="false" data-nota="4" aria-label="4 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.86 6.42.73-4.77 4.36 1.3 6.33L12 16.9l-5.7 3.18 1.3-6.33-4.77-4.36 6.42-.73z"/></svg></button><button type="button" role="radio" aria-checked="false" data-nota="5" aria-label="5 estrelas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.75 5.86 6.42.73-4.77 4.36 1.3 6.33L12 16.9l-5.7 3.18 1.3-6.33-4.77-4.36 6.42-.73z"/></svg></button></div>
@@ -1165,6 +1191,17 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
   let ultimoTipo = "", ultimaVaga = "";
   function finish(){
     $("#form").hidden = true; $("#done").hidden = false;
+    // candidatos veem os próximos passos, o Instagram e o botão de indicar
+    const cand = ultimoTipo === "Candidato";
+    $("#pos").hidden = !cand;
+    if(cand){
+      const vaga = ultimaVaga && !/banco de talentos/i.test(ultimaVaga) ? ultimaVaga : "";
+      $("#pos-txt").textContent = vaga
+        ? "Recebemos sua candidatura para a vaga de " + vaga + ", e seu perfil também entrou no banco de talentos do Fora da Caixa Black."
+        : "Seu perfil já está no banco de talentos do Fora da Caixa Black.";
+      const msg = "Oi! Me cadastrei no Fora da Caixa Black, um banco de talentos com vagas afirmativas para pessoas pretas e pardas. Achei que você ia gostar, é só se cadastrar aqui: https://black.foradacaixacarreiras.com.br";
+      $("#pos-indica").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+    }
     avalReset();
   }
   /* ===== AVALIAÇÃO DA EXPERIÊNCIA (1 a 5 estrelas) ===== */
