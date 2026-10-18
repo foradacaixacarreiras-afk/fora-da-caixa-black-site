@@ -988,7 +988,6 @@ const PARCERIAS = [
   {
     parceiro: "Rede Mulher Empreendedora",
     titulo: "Vagas afirmativas na Rede Mulher Empreendedora",
-    texto: "Divulgamos aqui as vagas abertas da organização: oportunidades afirmativas que incluem pessoas pretas, em áreas como projetos, marketing, finanças, jurídico e gestão.",
     fatos: [["Local","São Paulo, SP"],["Modelo","Híbrido"],["Níveis","Do estágio à diretoria"]],
     link: "https://redemulherempreendedora.vagas.solides.com.br/",
     ate: "2026-10-23T23:59:59-03:00"
@@ -1003,7 +1002,7 @@ const PARCERIAS = [
     const top = el("div","vd-top"); top.append(el("span","pill","Vaga parceira"), el("span","pill out","Link externo")); card.append(top);
     const com = el("p","parc-com"); com.append("Parceria "); com.append(el("b",null,"Fora da Caixa Black")); com.append(" × "); com.append(el("b",null,p.parceiro)); card.append(com);
     card.append(el("h3",null,p.titulo));
-    card.append(el("p","txt",p.texto));
+    if(p.texto) card.append(el("p","txt",p.texto));
     const f = el("div","vd-facts"); p.fatos.forEach(([k,v])=>{ const d=el("div"); d.append(el("span",null,k), el("b",null,v)); f.append(d); }); card.append(f);
     const a = el("a","btn btn-primary"); a.href = p.link; a.target = "_blank"; a.rel = "noopener";
     a.append("Ver vagas no site da parceira");
