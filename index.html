@@ -993,6 +993,17 @@ const PARCERIAS = [
     ate: "2026-10-23T23:59:59-03:00"
   }
 ];
+function registrarClique(p){
+  try{
+    let vis = ""; try{ vis = localStorage.getItem("fdc_vis") || ""; if(!vis){ vis = Math.random().toString(36).slice(2,10); localStorage.setItem("fdc_vis", vis); } }catch(e){}
+    const q = new URLSearchParams(location.search);
+    let origem = q.get("utm_source") || q.get("origem") || "";
+    if(!origem && document.referrer){ try{ origem = new URL(document.referrer).hostname; }catch(e){} }
+    const corpo = JSON.stringify({ tipo:"Clique", dados:{ "Parceiro": p.parceiro, "Destino": p.link, "Página": location.pathname, "Visitante": vis, "Origem": origem || "direto" } });
+    const url = "https://script.google.com/macros/s/AKfycbxOP89i_4C3uYkY1qekf2P_6PPZVrpMd1ZZrGE980ZaYrsDKFtT7zpgkrB6pxHdhy2-/exec";
+    if(!(navigator.sendBeacon && navigator.sendBeacon(url, corpo))) fetch(url, { method:"POST", body:corpo, keepalive:true }).catch(()=>{});
+  }catch(e){}
+}
 (function(){
   const box = document.getElementById("vaga-destaque"); if(!box) return;
   const agora = new Date();
@@ -1007,6 +1018,8 @@ const PARCERIAS = [
     const a = el("a","btn btn-primary"); a.href = p.link; a.target = "_blank"; a.rel = "noopener";
     a.append("Ver vagas no site da parceira");
     a.insertAdjacentHTML("beforeend",'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>');
+    // conta quantas pessoas o site levou até a parceira (aba "Cliques" da planilha)
+    a.addEventListener("click", ()=>registrarClique(p));
     card.append(a);
     card.append(el("p","ext","Você será direcionado(a) para o site da " + p.parceiro + ". A candidatura é feita por lá."));
     box.append(card);
