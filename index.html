@@ -293,19 +293,18 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .done h3{font-family:var(--display);font-weight:400;font-size:32px;color:var(--bordo);margin:0 0 10px}
 .done p{color:#5C3A30;margin:0 auto 10px;max-width:40ch}
 .done .note{font-size:12px;color:#8C6A5D;margin-top:18px}
-.pos{margin:6px auto 4px;max-width:400px;text-align:left}
+.pos{margin:4px auto 0;max-width:400px;text-align:left}
 .pos-txt{text-align:center}
-.passos{list-style:none;margin:16px 0 18px;padding:0;display:grid;gap:10px}
-.passos li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;font-size:15px;color:#5C3A30}
-.passos li b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#EFE0D3;color:var(--bordo);font-size:14px;font-weight:800}
+.passos{list-style:none;margin:12px auto 16px;padding:0;display:grid;gap:6px;max-width:330px}
+.passos li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:center;font-size:13.5px;line-height:1.35;color:#6B4A3F}
+.passos li b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#EFE0D3;color:var(--bordo);font-size:11px;font-weight:800}
 .passos li.ok b{background:var(--bordo);color:var(--creme)}
-.pos-acoes{display:grid;gap:10px}
-.pos-acoes .btn{width:100%;justify-content:center;box-sizing:border-box}
+.pos-acoes{display:grid;gap:8px;max-width:300px;margin:0 auto}
+.pos-acoes .btn{justify-content:center;box-sizing:border-box;padding:10px 16px;font-size:14px;font-weight:700;gap:8px;white-space:nowrap}
 .pos-insta{background:var(--bordo) !important;color:var(--creme) !important}
 .pos-indica{background:transparent;color:var(--bordo);box-shadow:inset 0 0 0 1.5px #D9C4B6}
 .pos-indica:hover{box-shadow:inset 0 0 0 1.5px var(--caramelo)}
-.pos-acoes svg{width:18px;height:18px;flex:none}
-.pos-dica{font-size:13px !important;color:#8C6A5D !important;text-align:center;margin:2px auto 0 !important}
+.pos-acoes svg{width:16px;height:16px;flex:none}
 .aval{margin:22px auto 8px;padding:20px 16px 18px;max-width:380px;border-radius:18px;background:#EFE0D3}
 .aval-q{margin:0 0 10px !important;font-weight:600;color:var(--bordo) !important;font-size:15.5px}
 .estrelas{display:flex;justify-content:center;gap:6px}
@@ -697,18 +696,17 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 
         <div class="done" id="done" hidden>
           <div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F6EADF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-          <h3 id="done-title">Obrigado pelo seu cadastro!</h3>
+          <h3 id="done-title">Que bom ter você aqui!</h3>
           <div class="pos" id="pos" hidden>
             <p class="pos-txt" id="pos-txt">Seu perfil já está no banco de talentos do Fora da Caixa Black.</p>
             <ol class="passos" aria-label="Próximos passos">
               <li class="ok"><b>&#10003;</b><span>Cadastro recebido</span></li>
-              <li><b>2</b><span>Analisamos o seu perfil com cuidado</span></li>
-              <li><b>3</b><span>Quando surgir uma vaga que combine com você, entramos em contato pelo e-mail ou WhatsApp</span></li>
+              <li><b>2</b><span>Analisamos o seu perfil</span></li>
+              <li><b>3</b><span>Entramos em contato quando surgir uma vaga para você</span></li>
             </ol>
             <div class="pos-acoes">
-              <a class="btn pos-insta" href="https://www.instagram.com/foradacaixacarreiras/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Siga o Fora da Caixa no Instagram</a>
-              <p class="pos-dica">As vagas novas aparecem primeiro por lá.</p>
-              <a class="btn pos-indica" id="pos-indica" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Indicar para alguém pelo WhatsApp</a>
+              <a class="btn pos-insta" href="https://www.instagram.com/foradacaixacarreiras/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Seguir no Instagram</a>
+              <a class="btn pos-indica" id="pos-indica" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Indicar alguém pelo WhatsApp</a>
             </div>
           </div>
           <div class="aval" id="aval">
