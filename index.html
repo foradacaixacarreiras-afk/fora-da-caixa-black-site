@@ -793,7 +793,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 </script>
 
 <script>
-/* ===== VAGAS: a primeira da lista é a vaga em destaque (a publicada por último). Vaga nova entra no topo. ===== */
+/* ===== VAGAS: a primeira da lista é a vaga em destaque (a publicada por último). Vaga nova entra no topo,
+   com publicada: "AAAA-MM-DDTHH:MM:00-03:00", para ficar à frente também das vagas parceiras. ===== */
 const VAGAS = [
   {
     destaque: true,
@@ -951,8 +952,10 @@ const VAGAS = [
   }
 
   // vagas pausadas aparecem depois das abertas
-  [...destaques].sort((a,b)=>(a.pausada?1:0)-(b.pausada?1:0)).forEach(v=>{
+  [...destaques].sort((a,b)=>(a.pausada?1:0)-(b.pausada?1:0)).forEach((v,i)=>{
     const card = el("div","vd");
+    card.dataset.pub = Date.parse(v.publicada || "") || -i;   // sem data: vale a ordem da lista
+    if(v.pausada) card.dataset.pausada = "1";
     const top = el("div","vd-top"); top.append(el("span", rotulo(v) === "Em destaque" ? "pill" : "pill out", rotulo(v))); if(v.tipo) top.append(el("span","pill out",v.tipo)); card.append(top);
     card.append(el("h3",null,v.titulo));
     if(v.onde) card.append(el("p","where",v.onde));
@@ -983,13 +986,15 @@ const VAGAS = [
   if(vagaAtual){ sel.value = vagaAtual.pausada ? "Banco de talentos (sem vaga específica)" : vagaAtual.titulo; sel.closest("label").hidden = true; }
 })();
 
-/* ===== VAGAS PARCEIRAS: card com link para o site do parceiro. Some sozinho depois da data "ate". ===== */
+/* ===== VAGAS PARCEIRAS: card com link para o site do parceiro. Some sozinho depois da data "ate".
+   "publicada" define a ordem: a mais recente aparece primeiro, junto com as vagas do Fora da Caixa. ===== */
 const PARCERIAS = [
   {
     parceiro: "Rede Mulher Empreendedora",
     titulo: "Vagas afirmativas na Rede Mulher Empreendedora",
     fatos: [["Local","São Paulo, SP"],["Modelo","Híbrido"],["Níveis","Do estágio à diretoria"]],
     link: "https://redemulherempreendedora.vagas.solides.com.br/",
+    publicada: "2026-10-19T09:00:00-03:00",
     ate: "2026-10-23T23:59:59-03:00"
   }
 ];
@@ -1010,6 +1015,7 @@ function registrarClique(p){
   const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
   PARCERIAS.filter(p => !p.ate || agora <= new Date(p.ate)).forEach(p=>{
     const card = el("div","vd vd-parc");
+    card.dataset.pub = Date.parse(p.publicada || "") || 0;
     const top = el("div","vd-top"); top.append(el("span","pill","Vaga parceira"), el("span","pill out","Link externo")); card.append(top);
     const com = el("p","parc-com"); com.append("Parceria "); com.append(el("b",null,"Fora da Caixa Black")); com.append(" × "); com.append(el("b",null,p.parceiro)); card.append(com);
     card.append(el("h3",null,p.titulo));
@@ -1024,6 +1030,8 @@ function registrarClique(p){
     card.append(el("p","ext","Você será direcionado(a) para o site da " + p.parceiro + ". A candidatura é feita por lá."));
     box.append(card);
   });
+  // A vaga publicada por último aparece primeiro (parceira ou do Fora da Caixa); pausadas vão para o fim
+  [...box.children].sort((x,y)=>((x.dataset.pausada?1:0)-(y.dataset.pausada?1:0)) || (Number(y.dataset.pub)-Number(x.dataset.pub))).forEach(c=>box.append(c));
 })();
 </script>
 <script>
