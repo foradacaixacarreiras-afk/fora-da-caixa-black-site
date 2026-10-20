@@ -414,6 +414,19 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
   .colchete{width:32px;height:32px}
   .meta{margin-top:28px}
 }
+/* ===== Depoimentos ===== */
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.dep{margin:0;background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:28px 26px 24px;display:flex;flex-direction:column;gap:18px}
+.dep::before{content:"\201C";font-family:var(--accent);font-style:italic;font-size:64px;line-height:.6;color:var(--caramelo);height:26px}
+.dep blockquote{margin:0;font-size:16.5px;line-height:1.6;color:var(--creme);flex:1}
+.dep figcaption{font-size:13px;letter-spacing:.04em;color:var(--creme-mute);border-top:1px solid var(--vinho-line);padding-top:14px}
+.dep figcaption b{display:block;color:var(--caramelo);font-weight:600;margin-bottom:2px}
+.dep-nota{font-size:13px;color:var(--creme-mute);margin:18px 0 0}
+@media (max-width:820px){
+  .dep-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;gap:14px;margin-inline:-20px;padding:0 20px 8px;scrollbar-width:none}
+  .dep-grid::-webkit-scrollbar{display:none}
+  .dep{flex:0 0 84%;scroll-snap-align:start}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}
   .anima .hero h1 .sc{clip-path:none}.anima .hero h1 .w > span{transform:none}.anima .hero h1 .u path{stroke-dashoffset:0}
   .anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:1;transform:none}}
@@ -494,6 +507,28 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
         </div>
         <ul id="banco-lista"></ul>
       </div>
+    </div>
+  </section>
+
+  <section class="block" id="depoimentos" style="padding-top:8px" aria-labelledby="dep-titulo">
+    <div class="wrap">
+      <h2 class="section-title" id="dep-titulo">O que dizem sobre o Fora da Caixa Black</h2>
+      <p class="section-sub">Trechos de mensagens de quem participou dos nossos processos seletivos.</p>
+      <div class="dep-grid">
+        <figure class="dep">
+          <blockquote>Achei muito positiva a forma transparente e respeitosa como vocês conduziram o retorno. Acredito que receber um feedback tão claro, mesmo quando o resultado não é o esperado, faz toda a diferença e contribui muito para o nosso crescimento profissional.</blockquote>
+          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
+        </figure>
+        <figure class="dep">
+          <blockquote>Agradeço pelo retorno, pela transparência e pelo feedback tão detalhado sobre o processo seletivo. Considero esse tipo de orientação muito importante para identificar oportunidades de desenvolvimento e direcionar meus próximos passos profissionais.</blockquote>
+          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
+        </figure>
+        <figure class="dep">
+          <blockquote>Empatia com os candidatos e respeito, por isso a experiência no processo seletivo foi ótima, apesar do resultado contrário à expectativa.</blockquote>
+          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
+        </figure>
+      </div>
+      <p class="dep-nota">Publicados com autorização e sem identificar quem escreveu.</p>
     </div>
   </section>
 
