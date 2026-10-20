@@ -251,7 +251,7 @@ label.f{display:grid;gap:6px;font-size:13px;font-weight:700;color:var(--bordo)}
 .vp .sheet-cta{margin-top:32px}
 .vp-todas{display:inline-block;margin-top:28px;color:var(--creme-mute);font-size:15px;text-decoration:none;border-bottom:1px solid var(--vinho-line);padding-bottom:2px}
 .vp-todas:hover{color:var(--creme);border-color:var(--caramelo)}
-.modo-vaga .hero,.modo-vaga #vaga,.modo-vaga .choice{display:none !important}
+.modo-vaga .hero,.modo-vaga #vaga,.modo-vaga .numeros,.modo-vaga .choice{display:none !important}
 @media (max-width:480px){.vp .intro{font-size:16px}}
 @media (max-width:480px){.sheet-facts{grid-template-columns:1fr}.sheet .intro{font-size:16px}}
 label.f .opt{font-weight:500;color:#8C6A5D}
@@ -426,6 +426,16 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
   .dep-grid::-webkit-scrollbar{display:none}
   .dep{flex:0 0 84%;scroll-snap-align:start}
 }
+/* ===== Números ===== */
+.numeros{padding:40px 0 48px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--vinho-line)}
+.num{padding:26px 24px;display:flex;flex-direction:column;gap:6px}
+.num+.num{border-left:1px solid var(--vinho-line)}
+.num b{font-family:var(--display);font-weight:600;font-size:clamp(34px,4vw,46px);line-height:1;letter-spacing:-.02em;color:var(--creme)}
+.num b em{font-family:var(--accent);font-style:italic;font-weight:400;color:var(--caramelo)}
+.num span{font-size:15px;line-height:1.4;color:var(--creme-mute)}
+.nums-data{font-size:12.5px;color:var(--creme-mute);opacity:.8;margin:10px 0 0}
+@media (max-width:640px){.numeros{padding:28px 0 36px}.nums{grid-template-columns:1fr}.num{padding:18px 0;gap:4px}.num+.num{border-left:0;border-top:1px solid var(--vinho-line)}.num b{font-size:34px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}
   .anima .hero h1 .sc{clip-path:none}.anima .hero h1 .w > span{transform:none}.anima .hero h1 .u path{stroke-dashoffset:0}
   .anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:1;transform:none}}
@@ -494,6 +504,17 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
     </div>
   </div>
 
+
+  <section class="numeros" aria-label="O Fora da Caixa Black em números">
+    <div class="wrap">
+      <div class="nums">
+        <div class="num"><b>220<em>+</em></b><span>talentos negros no banco</span></div>
+        <div class="num"><b>3</b><span>vagas divulgadas, uma delas em parceria</span></div>
+        <div class="num"><b><em>Retorno</em></b><span>individual para quem participa dos processos</span></div>
+      </div>
+      <p class="nums-data">Números de outubro de 2026.</p>
+    </div>
+  </section>
 
   <section class="block" id="vaga" style="padding-top:8px">
     <div class="wrap">
