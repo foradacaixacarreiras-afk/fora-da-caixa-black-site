@@ -346,6 +346,16 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .vd-parc .parc-com b{color:var(--caramelo);font-weight:700}
 .vd-parc p.txt{margin:-6px 0 0;font-size:15.5px;line-height:1.55;color:var(--creme-mute)}
 .vd-parc .ext{font-size:13px;color:var(--creme-mute);margin:-6px 0 0}
+.vd-parc .ext a{color:var(--caramelo)}
+.parc-mais{border-top:1px solid var(--vinho-line);padding-top:14px}
+.parc-mais summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--caramelo);list-style:none;display:inline-flex;align-items:center;gap:8px}
+.parc-mais summary::-webkit-details-marker{display:none}
+.parc-mais summary::after{content:"+";font-size:18px;line-height:1}
+.parc-mais[open] summary::after{content:"\2212"}
+.parc-mais h4{margin:16px 0 8px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--caramelo)}
+.parc-mais ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.parc-mais li{position:relative;padding-left:18px;font-size:15px;line-height:1.5;color:var(--creme)}
+.parc-mais li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--caramelo)}
 .vd-parc .btn{white-space:nowrap}
 .vd-parc .btn svg{width:16px;height:16px}
 .vd{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:28px;display:grid;gap:18px;margin-top:20px}
@@ -1052,6 +1062,29 @@ const VAGAS = [
    "publicada" define a ordem: a mais recente aparece primeiro, junto com as vagas do Fora da Caixa. ===== */
 const PARCERIAS = [
   {
+    parceiro: "Estúdio de Pilates (Tucuruvi)",
+    chamada: "Vaga parceira do Fora da Caixa Black",
+    titulo: "Professor(a) de Pilates",
+    texto: "Estúdio de Pilates no Tucuruvi busca professor(a) para as aulas do período da manhã, com atendimento em dupla.",
+    fatos: [["Local","Tucuruvi, Zona Norte de SP"],["Horário","Manhã, a partir das 7h"],["Contratação","Por hora"]],
+    secoes: [
+      { titulo: "Atividades", itens: [
+        "Conduzir aulas de Pilates em dupla, no solo e nos aparelhos.",
+        "Avaliar os alunos e adaptar os exercícios às necessidades de cada um.",
+        "Acompanhar a evolução dos alunos e manter os registros das aulas em dia."
+      ]},
+      { titulo: "Requisitos", itens: [
+        "Formação em Educação Física ou Fisioterapia, com registro ativo no CREF ou no CREFITO.",
+        "Formação ou certificação em Pilates.",
+        "Disponibilidade no período da manhã, a partir das 7h."
+      ]}
+    ],
+    // contato direto com a pessoa responsável (sem site externo)
+    contato: { nome: "Silvia", tel: "(11) 99965-5649", whats: "5511999655649",
+      msg: "Olá, Silvia! Vi a vaga de Professor(a) de Pilates no site do Fora da Caixa Black e gostaria de me candidatar." },
+    publicada: "2026-10-21T09:00:00-03:00"
+  },
+  {
     parceiro: "Rede Mulher Empreendedora",
     titulo: "Vagas afirmativas na Rede Mulher Empreendedora",
     fatos: [["Local","São Paulo, SP"],["Modelo","Híbrido"],["Níveis","Do estágio à diretoria"]],
@@ -1078,18 +1111,37 @@ function registrarClique(p){
   PARCERIAS.filter(p => !p.ate || agora <= new Date(p.ate)).forEach(p=>{
     const card = el("div","vd vd-parc");
     card.dataset.pub = Date.parse(p.publicada || "") || 0;
-    const top = el("div","vd-top"); top.append(el("span","pill","Vaga parceira"), el("span","pill out","Link externo")); card.append(top);
-    const com = el("p","parc-com"); com.append("Parceria "); com.append(el("b",null,"Fora da Caixa Black")); com.append(" × "); com.append(el("b",null,p.parceiro)); card.append(com);
+    const top = el("div","vd-top"); top.append(el("span","pill","Vaga parceira"), el("span","pill out", p.contato ? "Contato direto" : "Link externo")); card.append(top);
+    if(p.chamada){ card.append(el("p","parc-com",p.chamada)); }
+    else { const com = el("p","parc-com"); com.append("Parceria "); com.append(el("b",null,"Fora da Caixa Black")); com.append(" × "); com.append(el("b",null,p.parceiro)); card.append(com); }
     card.append(el("h3",null,p.titulo));
     if(p.texto) card.append(el("p","txt",p.texto));
     const f = el("div","vd-facts"); p.fatos.forEach(([k,v])=>{ const d=el("div"); d.append(el("span",null,k), el("b",null,v)); f.append(d); }); card.append(f);
-    const a = el("a","btn btn-primary"); a.href = p.link; a.target = "_blank"; a.rel = "noopener";
-    a.append("Ver vagas no site da parceira");
-    a.insertAdjacentHTML("beforeend",'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>');
+    if(p.secoes){
+      const det = el("details","parc-mais"); det.append(el("summary",null,"Ver atividades e requisitos"));
+      p.secoes.forEach(sec=>{ det.append(el("h4",null,sec.titulo)); const ul = el("ul"); sec.itens.forEach(t=>ul.append(el("li",null,t))); det.append(ul); });
+      card.append(det);
+    }
+    const ext = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+    const a = el("a","btn btn-primary"); a.target = "_blank"; a.rel = "noopener";
+    if(p.contato){
+      p.link = "https://wa.me/" + p.contato.whats + "?text=" + encodeURIComponent(p.contato.msg);
+      a.href = p.link; a.append("Falar com a " + p.contato.nome + " no WhatsApp"); a.insertAdjacentHTML("beforeend", ext);
+    } else {
+      a.href = p.link; a.append("Ver vagas no site da parceira"); a.insertAdjacentHTML("beforeend", ext);
+    }
     // conta quantas pessoas o site levou até a parceira (aba "Cliques" da planilha)
     a.addEventListener("click", ()=>registrarClique(p));
     card.append(a);
-    card.append(el("p","ext","Você será direcionado(a) para o site da " + p.parceiro + ". A candidatura é feita por lá."));
+    if(p.contato){
+      const nota = el("p","ext"); nota.append("Se preferir, ligue para " + p.contato.tel + ". O processo seletivo é conduzido pelo próprio estúdio. ");
+      const cad = el("a",null,"Aproveite e cadastre-se também no banco de talentos"); cad.href = "#form-card";
+      cad.addEventListener("click", ()=>{ const c = document.getElementById("opt-cand"); if(c) c.click(); const sel = document.getElementById("c-vaga"); if(sel) sel.value = "Banco de talentos (sem vaga específica)"; });
+      nota.append(cad, " para receber novas oportunidades.");
+      card.append(nota);
+    } else {
+      card.append(el("p","ext","Você será direcionado(a) para o site da " + p.parceiro + ". A candidatura é feita por lá."));
+    }
     box.append(card);
   });
   // A vaga publicada por último aparece primeiro (parceira ou do Fora da Caixa); pausadas vão para o fim
