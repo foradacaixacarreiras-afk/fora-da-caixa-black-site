@@ -356,6 +356,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordo);b
 .parc-mais ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .parc-mais li{position:relative;padding-left:18px;font-size:15px;line-height:1.5;color:var(--creme)}
 .parc-mais li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--caramelo)}
+.vd-alvo{box-shadow:0 0 0 2px var(--caramelo),0 0 40px rgba(217,168,119,.25)}
+.vd-parc{scroll-margin-top:16px}
 .vd-parc .btn{white-space:nowrap}
 .vd-parc .btn svg{width:16px;height:16px}
 .vd{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:28px;display:grid;gap:18px;margin-top:20px}
@@ -1062,6 +1064,7 @@ const VAGAS = [
    "publicada" define a ordem: a mais recente aparece primeiro, junto com as vagas do Fora da Caixa. ===== */
 const PARCERIAS = [
   {
+    slug: "professor-pilates",   // link direto: black.foradacaixacarreiras.com.br/#professor-pilates
     parceiro: "Estúdio de Pilates (Tucuruvi)",
     chamada: "Vaga parceira do Fora da Caixa Black",
     titulo: "Professor(a) de Pilates",
@@ -1111,6 +1114,7 @@ function registrarClique(p){
   PARCERIAS.filter(p => !p.ate || agora <= new Date(p.ate)).forEach(p=>{
     const card = el("div","vd vd-parc");
     card.dataset.pub = Date.parse(p.publicada || "") || 0;
+    if(p.slug) card.id = p.slug;
     const top = el("div","vd-top"); top.append(el("span","pill","Vaga parceira"), el("span","pill out", p.contato ? "Contato direto" : "Link externo")); card.append(top);
     if(p.chamada){ card.append(el("p","parc-com",p.chamada)); }
     else { const com = el("p","parc-com"); com.append("Parceria "); com.append(el("b",null,"Fora da Caixa Black")); com.append(" × "); com.append(el("b",null,p.parceiro)); card.append(com); }
@@ -1146,6 +1150,12 @@ function registrarClique(p){
   });
   // A vaga publicada por último aparece primeiro (parceira ou do Fora da Caixa); pausadas vão para o fim
   [...box.children].sort((x,y)=>((x.dataset.pausada?1:0)-(y.dataset.pausada?1:0)) || (Number(y.dataset.pub)-Number(x.dataset.pub))).forEach(c=>box.append(c));
+  // link direto de uma vaga parceira (#slug): rola até o card e destaca
+  const alvo = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if(alvo && alvo.classList.contains("vd-parc")){
+    alvo.classList.add("vd-alvo");
+    window.addEventListener("load", ()=>setTimeout(()=>alvo.scrollIntoView({behavior:"smooth", block:"start"}), 300));
+  }
 })();
 </script>
 <script>
