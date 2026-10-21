@@ -1134,7 +1134,7 @@ function registrarClique(p){
     a.addEventListener("click", ()=>registrarClique(p));
     card.append(a);
     if(p.contato){
-      const nota = el("p","ext"); nota.append("Se preferir, ligue para " + p.contato.tel + ". O processo seletivo é conduzido pelo próprio estúdio. ");
+      const nota = el("p","ext"); nota.append("O processo seletivo é conduzido pelo próprio estúdio. ");
       const cad = el("a",null,"Aproveite e cadastre-se também no banco de talentos"); cad.href = "#form-card";
       cad.addEventListener("click", ()=>{ const c = document.getElementById("opt-cand"); if(c) c.click(); const sel = document.getElementById("c-vaga"); if(sel) sel.value = "Banco de talentos (sem vaga específica)"; });
       nota.append(cad, " para receber novas oportunidades.");
