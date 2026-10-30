@@ -459,6 +459,70 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .hero{overflow-x:clip;overflow-y:visible}
 .hero::before{display:none}
 .brilho{opacity:.5}
+/* ===== SITE NOVO (opção A) ===== */
+.menu{display:flex;gap:28px;margin-left:auto;margin-right:28px}
+.menu a{color:var(--creme-mute);text-decoration:none;font-size:15px}
+.menu a:hover{color:var(--creme)}
+.top-cta{background:var(--caramelo);color:var(--bordo-deep);border:0;padding:12px 20px;border-radius:999px}
+.hero2{padding-block:64px 72px}
+.h2grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:48px;align-items:center}
+.slogan{margin:22px 0 0;font-family:var(--display);font-weight:700;font-size:clamp(40px,4.9vw,70px);line-height:.98;letter-spacing:-.035em;color:var(--creme);text-wrap:balance}
+.slogan em{font-family:var(--accent);font-weight:400;font-style:italic;color:var(--caramelo);letter-spacing:-.01em}
+.hero2 p.apoio{margin-top:28px;font-size:clamp(17px,1.6vw,20px);color:var(--creme-mute);max-width:40ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.bt{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;transition:transform .2s var(--ease),background .2s,border-color .2s}
+.bt:hover{transform:translateY(-2px)}
+.bt-claro{background:var(--creme);color:var(--bordo-deep)}
+.bt-linha{border:1.5px solid var(--caramelo);color:var(--creme)}
+.bt-linha:hover{background:rgba(217,168,119,.1)}
+.hero-foto{margin:0;border-radius:24px;overflow:hidden;height:560px}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block;filter:saturate(.92) sepia(.08)}
+.numeros{padding:0 0 8px}
+.faixa220{display:grid;grid-template-columns:auto 1fr auto;gap:48px;align-items:center;padding:44px 0;border-block:1px solid var(--vinho-line)}
+.f-num{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(72px,9vw,120px);line-height:.9;letter-spacing:-.04em;color:var(--caramelo)}
+.f-num em{font-family:var(--accent);font-weight:400;letter-spacing:0}
+.f-txt{margin:0;font-size:clamp(22px,2.4vw,32px);line-height:1.3;font-weight:500;letter-spacing:-.01em;max-width:30ch}
+.f-txt em{font-family:var(--accent);font-weight:400;color:var(--caramelo)}
+.bloco{padding-block:96px}
+.bloco-alt{background:#2C0A14;border-top:1px solid #4A1A22}
+.bl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.bl-t{margin:16px 0 0;font-family:var(--display);font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1.05;letter-spacing:-.025em;text-wrap:balance}
+.bl-t em{font-family:var(--accent);font-weight:400;font-style:italic;color:var(--caramelo)}
+.bl-sub{margin:0;color:var(--creme-mute);font-size:17px;line-height:1.6;max-width:34ch}
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.svc{background:var(--bordo);border:1px solid var(--vinho-line);border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:14px}
+.svc-n{font-family:var(--accent);font-style:italic;font-size:22px;color:var(--caramelo)}
+.svc h3{margin:0;font-size:24px;font-weight:600;line-height:1.2}
+.svc > p{margin:0;color:var(--creme-mute);font-size:16px;line-height:1.55}
+.svc-inc{border-top:1px solid var(--vinho-line);padding-top:16px;margin-top:4px}
+.svc-k{margin:0 0 12px;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--caramelo)}
+.svc ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.svc li{position:relative;padding-left:20px;font-size:15px;line-height:1.5}
+.svc li::before{content:"";position:absolute;left:0;top:.72em;width:9px;height:1.5px;background:var(--caramelo)}
+.svc-nota{margin:auto 0 0;font-size:13px;font-style:italic;color:var(--creme-mute)}
+.bl-cta{margin-top:40px}
+.sobre{background:var(--creme);color:var(--bordo-deep);padding-block:96px}
+.sobre .eyebrow{color:#6E2436}
+.sobre .bl-t{color:var(--bordo-deep)}
+.sobre .bl-t em{color:#6E2436}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sobre-foto{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:1/1}
+.sobre-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.sobre-p{margin:18px 0 0;font-size:18px;line-height:1.6;color:#4A1A22}
+.tags{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.tags li{border:1.5px solid var(--creme-mute);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;color:#4A1A22}
+.modo-vaga .so-home{display:none !important}
+@media (max-width:900px){
+  .menu{display:none}
+  .h2grid{grid-template-columns:1fr;gap:36px}
+  .hero-foto{height:auto;aspect-ratio:4/5}
+  .faixa220{grid-template-columns:1fr;gap:18px;padding:32px 0}
+  .bl-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .svcs{grid-template-columns:1fr}
+  .sobre-grid{grid-template-columns:1fr;gap:32px}
+  .bloco,.sobre{padding-block:64px}
+}
+@media (max-width:480px){.hero-ctas .bt{width:100%}.bl-cta{width:100%}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}
   .anima .hero h1 .sc{clip-path:none}.anima .hero h1 .w > span{transform:none}.anima .hero h1 .u path{stroke-dashoffset:0}
   .anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:1;transform:none}}
@@ -483,62 +547,48 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
         </svg>
         <span class="tag-black">Black</span>
       </a>
-      <a class="top-cta" href="#form-card"><span class="long">Fazer meu cadastro</span><span class="short">Cadastrar</span></a>
+      <nav class="menu so-home" aria-label="Menu">
+        <a href="#empresas">Para empresas</a>
+        <a href="#voce">Para você</a>
+        <a href="#vaga">Vagas</a>
+        <a href="#sobre">Sobre</a>
+      </nav>
+      <a class="top-cta" href="#form-card"><span class="long">Quero me cadastrar</span><span class="short">Cadastrar</span></a>
     </header>
   </div>
 </div>
 
 <main id="inicio">
-  <div class="wrap hero">
+  <div class="wrap hero hero2">
     <div class="brilho" id="brilho" aria-hidden="true"></div>
-    <p class="eyebrow">Banco de Talentos Negros</p>
-    <div class="titulo" id="titulo">
-      <span class="colchete a" aria-hidden="true"></span>
-      <span class="colchete b" aria-hidden="true"></span>
-      <h1 aria-label="Ei, você, pessoa negra!"><span class="sc" aria-hidden="true">Ei, você,</span><span class="bd" aria-hidden="true"><span class="w"><span>pessoa</span></span> <span class="u"><span class="w"><span>negra!</span></span><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C 40 4, 90 3, 130 7 C 160 10, 182 13, 198 6"/></svg></span></span></h1>
-    </div>
-    <p class="sub">Seu talento merece ser encontrado.</p>
-    <p class="apoio">Conectamos profissionais pretos e pardos a empresas que buscam talentos e querem construir equipes mais diversas.</p>
-    <div class="paths" role="group" aria-label="Escolha seu caminho">
-      <a class="path path-cand" href="#vaga" id="go-cand">
-        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
-        <span class="path-k">Sou candidato</span>
-        <span class="path-t">Ver vagas e fazer meu cadastro</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="path path-cand" href="#form-card" id="go-emp">
-        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg></span>
-        <span class="path-k">Sou empresa</span>
-        <span class="path-t">Quero contratar talentos negros</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="path path-emp" href="#form-card" id="go-prof" hidden>
-        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
-        <span class="path-k">Procuro um profissional</span>
-        <span class="path-t">Encontre profissionais negros</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="path path-emp" href="#form-card" id="go-prest" data-modo="prest" hidden>
-        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.3L21 9l-5 4.4L17.5 20 12 16.7 6.5 20 8 13.4 3 9l6.4-.7z"/></svg></span>
-        <span class="path-k">Sou profissional</span>
-        <span class="path-t">Quero divulgar meus serviços</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+    <div class="h2grid">
+      <div class="h2txt">
+        <p class="eyebrow">Recrutamento afirmativo · Desenvolvimento · Liderança</p>
+        <h1 class="slogan" id="titulo">Por mais pessoas negras <em>contratadas,</em> se desenvolvendo e liderando.</h1>
+        <p class="apoio">Conectamos empresas a talentos pretos e pardos e conduzimos processos seletivos afirmativos do início ao fim.</p>
+        <div class="hero-ctas">
+          <a class="bt bt-claro" href="#empresas" id="go-emp">Sou empresa: quero contratar</a>
+          <a class="bt bt-linha" href="#form-card" id="go-cand">Sou talento: quero me cadastrar</a>
+        </div>
+        <a href="#form-card" id="go-prof" hidden></a><a href="#form-card" id="go-prest" data-modo="prest" hidden></a>
+      </div>
+      <figure class="hero-foto"><img src="/img/ari-estudio.jpg" alt="Ari, fundadora do Fora da Caixa Black" width="900" height="1350"></figure>
     </div>
   </div>
 
-
   <section class="numeros" aria-label="O Fora da Caixa Black em números">
     <div class="wrap">
-      <div class="nums nums-1">
-        <div class="num"><b><em>Mais de</em> 220</b><span>talentos negros no banco</span></div>
+      <div class="faixa220">
+        <p class="f-num">220<em>+</em></p>
+        <p class="f-txt">Os talentos negros que estão faltando na sua empresa podem estar <em>entre as mais de 220 pessoas</em> do nosso banco.</p>
+        <a class="bt bt-linha" href="#empresas">Quero encontrá-los</a>
       </div>
     </div>
   </section>
 
   <section class="block" id="vaga" style="padding-top:8px">
     <div class="wrap">
-      <h2 class="section-title" id="vaga-titulo">Vaga em destaque</h2>
+      <h2 class="section-title" id="vaga-titulo">Vagas abertas</h2>
       <div id="vaga-destaque"></div>
       <div class="banco">
         <div class="banco-head">
@@ -550,7 +600,76 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
     </div>
   </section>
 
-  <section class="block" id="depoimentos" style="padding-top:8px" aria-labelledby="dep-titulo">
+  <section class="bloco so-home" id="empresas" aria-labelledby="emp-t">
+    <div class="wrap">
+      <p class="eyebrow">Para empresas</p>
+      <div class="bl-head"><h2 class="bl-t" id="emp-t">Diversidade que sai do papel <em>e entra na equipe.</em></h2><p class="bl-sub">Do perfil da vaga à efetivação, com método e cuidado em cada etapa.</p></div>
+      <div class="svcs">
+        <article class="svc">
+          <span class="svc-n">01</span>
+          <h3>Recrutamento afirmativo</h3>
+          <p>Processo seletivo completo, conduzido do início ao fim.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Alinhamento da vaga, da equipe e do perfil</li><li>Divulgação no banco de talentos e nas redes do Black</li><li>Triagem de currículos e entrevistas por competências</li><li>Indicação dos finalistas à empresa</li><li>Devolutiva para todas as pessoas que participaram</li></ul></div>
+        </article>
+        <article class="svc">
+          <span class="svc-n">02</span>
+          <h3>Acompanhamento de 90 dias</h3>
+          <p>Apoio à empresa no período de experiência de quem foi contratado.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Mês 1: integração e critérios de avaliação</li><li>Mês 2: evolução, feedback e ajustes</li><li>Mês 3: avaliação final e relatório de decisão</li><li>3 reuniões mensais e suporte por WhatsApp</li></ul></div><p class="svc-nota">A decisão final é sempre da empresa.</p>
+        </article>
+        <article class="svc">
+          <span class="svc-n">03</span>
+          <h3>Palestras e treinamentos</h3>
+          <p>Conteúdos para lideranças e equipes, com tema e formato combinados.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Diversidade e inclusão na prática</li><li>Recrutamento sem vieses</li><li>Liderança de equipes diversas</li><li>Formato presencial ou on-line</li></ul></div>
+        </article>
+      </div>
+      <a class="bt bt-claro bl-cta" href="https://wa.me/5511911747836?text=Ol%C3%A1%2C%20Ari%21%20Vi%20o%20site%20do%20Fora%20da%20Caixa%20Black%20e%20quero%20conversar%20sobre%20recrutamento%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Quero conversar sobre a minha empresa</a>
+    </div>
+  </section>
+
+  <section class="bloco bloco-alt so-home" id="voce" aria-labelledby="voce-t">
+    <div class="wrap">
+      <p class="eyebrow">Para você</p>
+      <div class="bl-head"><h2 class="bl-t" id="voce-t">O que podemos fazer <em>pela sua carreira.</em></h2><p class="bl-sub">Orientação de quem está do outro lado da mesa, na triagem e nas entrevistas.</p></div>
+      <div class="svcs">
+        <article class="svc">
+          <span class="svc-n">01</span>
+          <h3>Currículo</h3>
+          <p>Revisão ou criação de um currículo pensado para passar pela triagem.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Estrutura compatível com sistemas de triagem (ATS)</li><li>Conquistas e resultados em destaque</li><li>Palavras-chave da sua área</li><li>Versão final em PDF e editável</li></ul></div>
+        </article>
+        <article class="svc">
+          <span class="svc-n">02</span>
+          <h3>LinkedIn</h3>
+          <p>Um perfil que faz recrutadores encontrarem você.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Título e resumo que dizem o que você entrega</li><li>Experiências reescritas com foco em resultado</li><li>Palavras-chave para a busca de recrutadores</li><li>Dicas de foto, capa e rede de contatos</li></ul></div>
+        </article>
+        <article class="svc">
+          <span class="svc-n">03</span>
+          <h3>Simulação de entrevista</h3>
+          <p>Treino com perguntas reais da sua área.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Entrevista simulada por vídeo</li><li>Perguntas técnicas e comportamentais</li><li>Devolutiva sobre o que fortalecer</li><li>Como falar de pretensão salarial</li></ul></div>
+        </article>
+      </div>
+      <a class="bt bt-linha bl-cta" href="https://wa.me/5511911747836?text=Ol%C3%A1%2C%20Ari%21%20Vi%20o%20site%20do%20Fora%20da%20Caixa%20Black%20e%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20de%20curr%C3%ADculo%2C%20LinkedIn%20e%20simula%C3%A7%C3%A3o%20de%20entrevista." target="_blank" rel="noopener">Quero cuidar da minha carreira</a>
+    </div>
+  </section>
+
+  <section class="sobre so-home" id="sobre" aria-labelledby="sobre-t">
+    <div class="wrap sobre-grid">
+      <figure class="sobre-foto"><img src="/img/ari-sentada.jpg" alt="Ari sorrindo, sentada" width="720" height="691"></figure>
+      <div>
+        <p class="eyebrow">Quem conduz</p>
+        <h2 class="bl-t" id="sobre-t">Ari, <em>especialista em Talent Acquisition</em></h2>
+        <p class="sobre-p">Especialista em recrutamento e seleção, com mais de 5 anos conectando empresas às pessoas certas. Conduz processos seletivos do alinhamento da vaga à indicação final, com triagem criteriosa, entrevistas por competências e devolutiva para cada pessoa que participa.</p>
+        <p class="sobre-p">Formada em Pedagogia pela FMU, com MBA em Recursos Humanos e Pedagogia Empresarial. Fundadora do Fora da Caixa, une técnica e olhar humano para que talento encontre oportunidade.</p>
+        <ul class="tags"><li>Recrutamento e seleção</li><li>Talent Acquisition</li><li>MBA em RH</li><li>+5 anos em R&amp;S</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="depoimentos" aria-labelledby="dep-titulo">
     <div class="wrap">
       <h2 class="section-title" id="dep-titulo">O que dizem sobre o Fora da Caixa Black</h2>
       <p class="section-sub">Trechos de mensagens de quem participou dos nossos processos seletivos.</p>
@@ -827,9 +946,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
       <span class="tag-black">Black</span>
     </a>
     <nav class="rod-nav" aria-label="Atalhos">
+      <a href="/#empresas">Para empresas</a>
+      <a href="/#voce">Para você</a>
       <a href="/#vaga">Vagas</a>
-      <a href="/#form-card" data-ir="go-cand">Candidatos</a>
-      <a href="/#form-card" data-ir="go-emp">Empresas</a>
+      <a href="/#form-card" data-ir="go-cand">Cadastro</a>
       <a href="/#form-card" data-ir="go-prest" hidden>Profissionais</a>
       <a href="https://foradacaixacarreiras.com.br" target="_blank" rel="noopener">Fora da Caixa</a>
     </nav>
@@ -842,7 +962,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   </div>
   <div class="wrap rod-base">
     <span>© 2026 Fora da Caixa Carreiras</span>
-    <em>Talento negro existe. A gente mostra onde.</em>
+    <em>Por mais pessoas negras contratadas, se desenvolvendo e liderando.</em>
   </div>
 </footer>
 <script>
@@ -893,7 +1013,7 @@ const VAGAS = [
   const el = (t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
   const destaques = VAGAS.filter(x=>x.destaque), outras = VAGAS.filter(x=>!x.destaque);
   const titulo = document.getElementById("vaga-titulo");
-  if(titulo) titulo.textContent = destaques.length > 1 ? "Vagas abertas" : "Vaga em destaque";
+  if(titulo) titulo.textContent = "Vagas abertas";
   const rotulo = v => v.pausada ? "Inscrições pausadas" : (v === destaques.find(x=>!x.pausada) ? "Em destaque" : "Vaga aberta");
   const pausa = ()=>{ if(window.abrirPausa) window.abrirPausa(); };
   const box = document.getElementById("vaga-destaque");

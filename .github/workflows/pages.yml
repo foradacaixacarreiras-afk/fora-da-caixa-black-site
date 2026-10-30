@@ -34,6 +34,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp -r vagas _site/
+          cp -r img _site/
           cp index.html _site/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
