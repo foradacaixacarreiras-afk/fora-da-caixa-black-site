@@ -523,6 +523,28 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   .bloco,.sobre{padding-block:64px}
 }
 @media (max-width:480px){.hero-ctas .bt{width:100%}.bl-cta{width:100%}}
+/* ===== Depoimentos: palavras que mais ouvimos ===== */
+.dep-top{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.dep-sub{margin-top:18px}
+.nuvem{display:flex;flex-wrap:wrap;gap:4px 22px;align-items:baseline}
+.pw{appearance:none;background:none;border:0;padding:2px 0;margin:0;cursor:pointer;line-height:1.15;font-family:var(--display);font-weight:600;letter-spacing:-.02em;transition:color .2s,opacity .2s,transform .2s}
+.pw-it{font-family:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
+.pw-xl{font-size:clamp(40px,5vw,64px)}.pw-l{font-size:clamp(32px,3.8vw,52px)}.pw-m{font-size:clamp(26px,3vw,40px)}.pw-s{font-size:clamp(22px,2.4vw,32px)}
+.pw-c{color:var(--caramelo)}.pw-cr{color:var(--creme)}.pw-mu{color:var(--creme-mute)}
+.pw:hover,.pw:focus-visible{transform:translateY(-2px)}
+.nuvem.ativa .pw{opacity:.35}.nuvem.ativa .pw.on{opacity:1}
+.dep2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px;align-items:start}
+.dep2{margin:0;background:var(--bordo);border:1px solid var(--vinho-line);border-radius:20px;padding:24px 26px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.dep2 blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--creme)}
+.dep2 mark{background:none;color:var(--caramelo);font-family:var(--accent);font-style:italic;font-size:1.06em}
+.dep2 figcaption{margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--caramelo)}
+.dep2.on{border-color:var(--caramelo);box-shadow:0 0 0 1px var(--caramelo),0 18px 40px rgba(0,0,0,.35);transform:translateY(-3px)}
+@media (max-width:900px){
+  .dep-top{grid-template-columns:1fr;gap:28px}
+  .dep2-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:20px;gap:14px;margin-inline:-20px;padding:4px 20px 10px;scrollbar-width:none;margin-top:36px}
+  .dep2-grid::-webkit-scrollbar{display:none}
+  .dep2{flex:0 0 84%;scroll-snap-align:start}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}
   .anima .hero h1 .sc{clip-path:none}.anima .hero h1 .w > span{transform:none}.anima .hero h1 .u path{stroke-dashoffset:0}
   .anima .hero .sub,.anima .hero .apoio,.anima .hero .path{opacity:1;transform:none}}
@@ -669,24 +691,17 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
     </div>
   </section>
 
-  <section class="block" id="depoimentos" aria-labelledby="dep-titulo">
+  <section class="block dep-sec" id="depoimentos" aria-labelledby="dep-titulo">
     <div class="wrap">
-      <h2 class="section-title" id="dep-titulo">O que dizem sobre o Fora da Caixa Black</h2>
-      <p class="section-sub">Trechos de mensagens de quem participou dos nossos processos seletivos.</p>
-      <div class="dep-grid">
-        <figure class="dep">
-          <blockquote>Achei muito positiva a forma transparente e respeitosa como vocês conduziram o retorno. Acredito que receber um feedback tão claro, mesmo quando o resultado não é o esperado, faz toda a diferença e contribui muito para o nosso crescimento profissional.</blockquote>
-          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
-        </figure>
-        <figure class="dep">
-          <blockquote>Agradeço pelo retorno, pela transparência e pelo feedback tão detalhado sobre o processo seletivo. Considero esse tipo de orientação muito importante para identificar oportunidades de desenvolvimento e direcionar meus próximos passos profissionais.</blockquote>
-          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
-        </figure>
-        <figure class="dep">
-          <blockquote>Empatia com os candidatos e respeito, por isso a experiência no processo seletivo foi ótima, apesar do resultado contrário à expectativa.</blockquote>
-          <figcaption><b>Participante do processo seletivo</b>Outubro de 2026</figcaption>
-        </figure>
+      <div class="dep-top">
+        <div>
+          <p class="eyebrow">O que dizem sobre o Fora da Caixa Black</p>
+          <h2 class="bl-t" id="dep-titulo">As palavras <em>que mais ouvimos.</em></h2>
+          <p class="bl-sub dep-sub">Tiradas das mensagens de quem passou pelos nossos processos e serviços. Toque numa palavra para ver a mensagem.</p>
+        </div>
+        <div class="nuvem" role="group" aria-label="Palavras dos depoimentos"><button type="button" class="pw pw-xl pw-it pw-c" data-msg="m2">diferença faraônica</button><button type="button" class="pw pw-m pw-b pw-cr" data-msg="m3">transparente</button><button type="button" class="pw pw-m pw-it pw-mu" data-msg="m3">respeitosa</button><button type="button" class="pw pw-l pw-b pw-cr" data-msg="m4">feedback detalhado</button><button type="button" class="pw pw-m pw-b pw-c" data-msg="m2">boa vontade</button><button type="button" class="pw pw-l pw-it pw-cr" data-msg="m5">empatia</button><button type="button" class="pw pw-s pw-b pw-mu" data-msg="m3">devolutiva clara</button><button type="button" class="pw pw-s pw-it pw-c" data-msg="m6">orientação</button><button type="button" class="pw pw-l pw-it pw-c" data-msg="m3">toda a diferença</button></div>
       </div>
+      <div class="dep2-grid"><figure class="dep2" id="m1"><blockquote><mark>Ajustei meu currículo</mark> ontem mesmo e já consegui uma entrevista. Torcendo muito!</blockquote><figcaption>Cliente de currículo</figcaption></figure><figure class="dep2" id="m2"><blockquote>As suas devolutivas foram de uma <mark>diferença faraônica</mark>. Já arrumei meu currículo, e ficou incrivelmente melhor. Agradeço de coração toda ajuda e <mark>boa vontade</mark>.</blockquote><figcaption>Participante do processo seletivo</figcaption></figure><figure class="dep2" id="m3"><blockquote>Achei muito positiva a forma <mark>transparente e respeitosa</mark> como vocês conduziram o retorno. Acredito que receber um feedback tão claro, mesmo quando o resultado não é o esperado, faz <mark>toda a diferença</mark> e contribui muito para o nosso crescimento profissional.</blockquote><figcaption>Participante do processo seletivo</figcaption></figure><figure class="dep2" id="m4"><blockquote>Sobre o processo seletivo, achei muito legal receber um <mark>feedback tão detalhado</mark>.</blockquote><figcaption>Participante do processo seletivo</figcaption></figure><figure class="dep2" id="m5"><blockquote><mark>Empatia com os candidatos e respeito</mark>, por isso a experiência no processo seletivo foi ótima, apesar do resultado contrário à expectativa.</blockquote><figcaption>Participante do processo seletivo</figcaption></figure><figure class="dep2" id="m6"><blockquote>Agradeço pelo retorno, pela transparência e pelo feedback tão detalhado sobre o processo seletivo. Considero esse tipo de <mark>orientação</mark> muito importante para identificar oportunidades de desenvolvimento e direcionar meus próximos passos profissionais.</blockquote><figcaption>Participante do processo seletivo</figcaption></figure></div>
     </div>
   </section>
 
@@ -1641,6 +1656,24 @@ document.querySelectorAll("[data-vaga]").forEach(a=>a.addEventListener("click",(
     const r = hero.getBoundingClientRect();
     brilho.style.setProperty("--gx", ((e.clientX - r.left)/r.width*100) + "%");
     brilho.style.setProperty("--gy", ((e.clientY - r.top)/r.height*100) + "%");
+  });
+})();
+</script>
+<script>
+/* ===== Depoimentos: tocar numa palavra destaca a mensagem ===== */
+(function(){
+  const nuvem = document.querySelector(".nuvem"); if(!nuvem) return;
+  nuvem.addEventListener("click", e=>{
+    const b = e.target.closest(".pw"); if(!b) return;
+    const card = document.getElementById(b.dataset.msg); if(!card) return;
+    const ja = b.classList.contains("on");
+    nuvem.querySelectorAll(".pw").forEach(x=>x.classList.remove("on"));
+    document.querySelectorAll(".dep2").forEach(x=>x.classList.remove("on"));
+    if(ja){ nuvem.classList.remove("ativa"); return; }
+    nuvem.classList.add("ativa"); b.classList.add("on"); card.classList.add("on");
+    const grid = card.parentElement;
+    if(grid.scrollWidth > grid.clientWidth) grid.scrollTo({left: card.offsetLeft - 20, behavior:"smooth"});
+    else card.scrollIntoView({behavior:"smooth", block:"nearest"});
   });
 })();
 </script>
