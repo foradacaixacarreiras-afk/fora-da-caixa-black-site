@@ -499,6 +499,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
 .svc ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
 .svc li{position:relative;padding-left:20px;font-size:15px;line-height:1.5}
 .svc li::before{content:"";position:absolute;left:0;top:.72em;width:9px;height:1.5px;background:var(--caramelo)}
+.svc-plus{margin-top:18px;display:flex;align-items:center;gap:28px;background:var(--bordo);border:1px solid rgba(217,168,119,.5);border-radius:18px;padding:22px 30px}
+.svc-plus-k{flex:none;font-size:12px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--caramelo)}
+.svc-plus p{margin:0;font-size:15px;line-height:1.55;color:var(--creme-mute)}
+.svc-plus strong{color:var(--creme);font-weight:600}
 .svc-nota{margin:auto 0 0;font-size:13px;font-style:italic;color:var(--creme-mute)}
 .bl-cta{margin-top:40px}
 .sobre{background:var(--creme);color:var(--bordo-deep);padding-block:96px}
@@ -519,6 +523,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   .faixa220{grid-template-columns:1fr;gap:18px;padding:32px 0}
   .bl-head{flex-direction:column;align-items:flex-start;gap:16px}
   .svcs{grid-template-columns:1fr}
+  .svc-plus{flex-direction:column;align-items:flex-start;gap:10px;padding:22px}
   .sobre-grid{grid-template-columns:1fr;gap:32px}
   .bloco,.sobre{padding-block:64px}
 }
@@ -625,26 +630,30 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   <section class="bloco so-home" id="empresas" aria-labelledby="emp-t">
     <div class="wrap">
       <p class="eyebrow">Para empresas</p>
-      <div class="bl-head"><h2 class="bl-t" id="emp-t">Diversidade que sai do papel <em>e entra na equipe.</em></h2><p class="bl-sub">Do perfil da vaga à efetivação, com método e cuidado em cada etapa.</p></div>
+      <div class="bl-head"><h2 class="bl-t" id="emp-t">Diversidade que sai do papel <em>e entra na equipe.</em></h2><p class="bl-sub">Três formatos, do processo seletivo completo à divulgação da vaga.</p></div>
       <div class="svcs">
         <article class="svc">
           <span class="svc-n">01</span>
           <h3>Recrutamento afirmativo</h3>
-          <p>Processo seletivo completo, conduzido do início ao fim.</p>
-          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Alinhamento da vaga, da equipe e do perfil</li><li>Divulgação no banco de talentos e nas redes do Black</li><li>Triagem de currículos e entrevistas por competências</li><li>Indicação dos finalistas à empresa</li></ul></div>
+          <p>O processo completo, do alinhamento à indicação dos finalistas.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Alinhamento da vaga e do perfil</li><li>Divulgação no banco e nas redes do Black</li><li>Triagem e entrevistas por competências</li><li>Indicação dos finalistas</li></ul></div>
         </article>
         <article class="svc">
           <span class="svc-n">02</span>
-          <h3>Acompanhamento de 90 dias</h3>
-          <p>Apoio à empresa no período de experiência de quem foi contratado.</p>
-          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Mês 1: integração e critérios de avaliação</li><li>Mês 2: evolução, feedback e ajustes</li><li>Mês 3: avaliação final e relatório de decisão</li><li>3 reuniões mensais e suporte por WhatsApp</li></ul></div>
+          <h3>Divulgação + lista</h3>
+          <p>Para quem já conduz o processo e quer candidatos qualificados.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Vaga no banco de talentos e nas redes do Black</li><li>Lista com nome, currículo, LinkedIn e dados de contato</li></ul></div>
         </article>
         <article class="svc">
           <span class="svc-n">03</span>
-          <h3>Palestras e treinamentos</h3>
-          <p>Conteúdos para lideranças e equipes, com tema e formato combinados.</p>
-          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Diversidade e inclusão na prática</li><li>Treinamento em recrutamento e seleção</li><li>Liderança de equipes diversas</li><li>Formato presencial ou on-line</li></ul></div>
+          <h3>Divulgação simples</h3>
+          <p>Para ampliar o alcance da vaga.</p>
+          <div class="svc-inc"><p class="svc-k">O que inclui</p><ul><li>Vaga no banco com mais de 220 talentos negros</li><li>LinkedIn, Instagram e comunidade do WhatsApp do Black</li><li>Candidaturas direto no e-mail da empresa</li></ul></div>
         </article>
+      </div>
+      <div class="svc-plus">
+        <span class="svc-plus-k">Plus</span>
+        <p><strong>Acompanhamento de 90 dias.</strong> Continuidade depois da contratação, como complemento do recrutamento afirmativo: integração, feedbacks, avaliação final e relatório.</p>
       </div>
       <a class="bt bt-claro bl-cta" href="https://wa.me/5511911747836?text=Ol%C3%A1%2C%20Ari%21%20Vi%20o%20site%20do%20Fora%20da%20Caixa%20Black%20e%20quero%20conversar%20sobre%20recrutamento%20para%20a%20minha%20empresa." target="_blank" rel="noopener">Quero conversar sobre a minha empresa</a>
     </div>
